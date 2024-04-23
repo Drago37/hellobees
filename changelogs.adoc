@@ -1,0 +1,10 @@
+= helloBees - Changelogs
+:doctype: book
+:encoding: utf-8
+:lang: fr
+:author: Anthony Graule
+:app-name: HelloBees
+
+= [1.0.0] - ??
+
+== Changelogs

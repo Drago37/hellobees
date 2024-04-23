@@ -1,0 +1,22 @@
+= Chapitre 1
+
+Passionné d'apiculture, je constate un manque en terme d'outils numériques, je décide de réaliser une application web.
+
+Choix de réaliser cette application d'apiculture en utilisant le DDD, la clean architecture, php 8.2, symfony 7 dans un premier temps. Par la suite, séparer le front et le back avec VueJS.
+
+Récupération des besoins sur un forum en les couplant aux miens. Choix dans d'un langage partagé (Ubiquitous language). Lister les cas d'utilisation puis les contextes métier du Domain (Bounded contexts). Puis définition des agrégats, entités, value object, enums.
+
+Je me suis posé la question du français ou non dans le Domain de manière à être sûr de bien comprendre le métier. Mais j'ai décié de le faire en anglais tout de même. Mais si cela était à refaire, je le ferai peut-être en français, car les traductions sont parfois peu communes et peuvent donner lieu à des incompréhensions.
+
+Réalisation d'un cahier des charges listant les différents élément permettant de réaliser le Domain sur un gslide.
+
+= Chapitre 2
+
+Codage en php 8.2 du Domain en listant les cas d'utilisation. je me suis aperçu rapidement que je ne codais pas correctement en clean architecture en passant dans mes use case directement les entités. Or il ets prérable d'utiliser des DTO avec des Request de manières à récupérer des types scalaires. C'est au use case ensuite de récupérer ces données pour créer les entités et value object si besoin. Cela permet de mettre la vérification des données au coeur du métier et de donner le moins d'importance possible à l'infrastructure.
+
+Des tests unitaires seront effectués pour tester tout ceci. Le TDD est difficile à mettre en place sur cette partie car je préfère qu'elle soit drivée par le métier et non pas par les tests.
+
+Prochaine intervention, mettre en place de vrais DTO pour les Request des Use Case.
+
+= Chapitre 3
+

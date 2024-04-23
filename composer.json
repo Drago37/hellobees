@@ -1,0 +1,39 @@
+{
+	"name": "drago37/hellobees",
+	"license": "proprietary",
+	"description": " This is a Beekeeping software to help Beekeeper to follow and control their Apiary",
+	"require-dev": {
+		"phpstan/phpstan": "^1.10",
+		"phpunit/phpunit": "^9.6"
+	},
+	"require": {
+		"ext-json": "*",
+		"ramsey/uuid": "^4.2",
+	},
+	"autoload": {
+		"psr-4": {
+			"HelloBees\\": "src/",
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"HelloBeesTest\\": "tests/"
+		}
+	},
+	"repositories": [],
+	"scripts": {
+		"php_stan:check": "vendor/bin/phpstan analyse -c phpstan.neon"
+	},
+	"config": {
+		"preferred-install": {},
+		"platform": {
+			"php": "8.2"
+		},
+		"sort-packages": true,
+		"gitlab-token": {},
+		"gitlab-domains": [],
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		}
+	}
+}
