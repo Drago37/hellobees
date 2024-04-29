@@ -1,4 +1,4 @@
-= helloBees - Changelogs
+= HelloBees - Changelogs
 :doctype: book
 :encoding: utf-8
 :lang: fr

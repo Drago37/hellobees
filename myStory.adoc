@@ -1,4 +1,11 @@
-= Chapitre 1
+= HelloBees - Story
+:doctype: book
+:encoding: utf-8
+:lang: fr
+:author: Anthony Graule
+:app-name: HelloBees
+
+== Chapitre 1
 
 Passionné d'apiculture, je constate un manque en terme d'outils numériques, je décide de réaliser une application web.
 
@@ -10,7 +17,7 @@ Je me suis posé la question du français ou non dans le Domain de manière à �
 
 Réalisation d'un cahier des charges listant les différents élément permettant de réaliser le Domain sur un gslide.
 
-= Chapitre 2
+== Chapitre 2
 
 Codage en php 8.2 du Domain en listant les cas d'utilisation. je me suis aperçu rapidement que je ne codais pas correctement en clean architecture en passant dans mes use case directement les entités. Or il ets prérable d'utiliser des DTO avec des Request de manières à récupérer des types scalaires. C'est au use case ensuite de récupérer ces données pour créer les entités et value object si besoin. Cela permet de mettre la vérification des données au coeur du métier et de donner le moins d'importance possible à l'infrastructure.
 
@@ -18,5 +25,5 @@ Des tests unitaires seront effectués pour tester tout ceci. Le TDD est difficil
 
 Prochaine intervention, mettre en place de vrais DTO pour les Request des Use Case.
 
-= Chapitre 3
+== Chapitre 3
 
