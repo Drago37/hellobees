@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace HelloBees\Domain\Trace\Entity;
 
-use HelloBees\Domain\BeeKeeping\Entity\BeeKeeper;
 use HelloBees\Domain\SharedKernel\Entity\Entity;
 use HelloBees\Domain\SharedKernel\ValueObject\DateTime\DateTime;
 use HelloBees\Domain\SharedKernel\ValueObject\Identity\Uuid;
@@ -27,7 +26,9 @@ class Trace extends Entity
      * @param TraceOperation $operation
      * @param TraceAction $action
      * @param string $comment
-     * @param BeeKeeper $beeKeeper
+     * @param string|null $beeKeeperId
+     * @param string|null $beehiveId
+     * @param string|null $ApiaryId
      */
     public function __construct(
         Uuid                     $uuid,
@@ -35,7 +36,9 @@ class Trace extends Entity
         protected TraceOperation $operation,
         protected TraceAction    $action,
         protected string         $comment,
-        protected BeeKeeper      $beeKeeper
+        protected ?string        $beeKeeperId,
+        protected ?string        $beehiveId,
+        protected ?string        $ApiaryId
     )
     {
         parent::__construct($uuid);
@@ -114,20 +117,57 @@ class Trace extends Entity
     }
 
     /**
-     * @return BeeKeeper
+     * @return string|null
      */
-    public function getBeeKeeper(): BeeKeeper
+    public function getBeeKeeperId(): ?string
     {
-        return $this->beeKeeper;
+        return $this->beeKeeperId;
     }
 
     /**
-     * @param BeeKeeper $beeKeeper
+     * @param string|null $beeKeeperId
      * @return Trace
      */
-    public function setBeeKeeper(BeeKeeper $beeKeeper): Trace
+    public function setBeeKeeperId(?string $beeKeeperId): Trace
     {
-        $this->beeKeeper = $beeKeeper;
+        $this->beeKeeperId = $beeKeeperId;
         return $this;
     }
+
+    /**
+     * @return string|null
+     */
+    public function getBeehiveId(): ?string
+    {
+        return $this->beehiveId;
+    }
+
+    /**
+     * @param string|null $beehiveId
+     * @return Trace
+     */
+    public function setBeehiveId(?string $beehiveId): Trace
+    {
+        $this->beehiveId = $beehiveId;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getApiaryId(): ?string
+    {
+        return $this->ApiaryId;
+    }
+
+    /**
+     * @param string|null $ApiaryId
+     * @return Trace
+     */
+    public function setApiaryId(?string $ApiaryId): Trace
+    {
+        $this->ApiaryId = $ApiaryId;
+        return $this;
+    }
+
 }
