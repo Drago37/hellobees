@@ -49,14 +49,20 @@ final readonly class AddTraceComment
                     TraceOperation::Create,
                     TraceAction::TraceComment,
                     $request->getComment(),
-                    $request->getBeeKeeper()
+                    $request->getBeeKeeperId(),
+                    $request->getBeehiveId(),
+                    $request->getApiaryId(),
                 );
                 $this->traceRepository->insert($trace);
             } catch (RepositoryException|InvalidValueObjectException $e) {
                 $response->setError(new ResponseError('trace.add.comment.failed', ['request' => $request], $e));
             }
         } else {
-            $response->setError(new ResponseError('trace.add.comment.empty'));
+            if (empty($request->getComment())) {
+                $response->setError(new ResponseError('trace.add.comment.empty'));
+            } elseif (empty($request->getBeeKeeperId())) {
+                $response->setError(new ResponseError('trace.add.beekeeper_id.empty'));
+            }
         }
         $presenter->present($response);
     }

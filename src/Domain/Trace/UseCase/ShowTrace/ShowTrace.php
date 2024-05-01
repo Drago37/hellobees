@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace HelloBees\Domain\Trace\UseCase\ShowTrace;
 
+use HelloBees\Domain\SharedKernel\Exception\InvalidValueObjectException;
 use HelloBees\Domain\SharedKernel\Exception\RepositoryException;
 use HelloBees\Domain\SharedKernel\UseCase\ResponseError;
 use HelloBees\Domain\SharedKernel\ValueObject\Identity\Uuid;
@@ -27,23 +28,36 @@ final readonly class ShowTrace
     }
 
     /**
-     * @param Uuid $traceUuid
+     * @param ShowTraceRequest $request
      * @param ShowTracePresenter $presenter
      * @return void
      */
-    public function execute(Uuid $traceUuid, ShowTracePresenter $presenter): void
+    public function execute(ShowTraceRequest $request, ShowTracePresenter $presenter): void
     {
         $response = new ShowTraceResponse();
-        try {
-            $trace = $this->traceRepository->find($traceUuid);
-            if (is_null($trace)) {
-                $response->setError(new ResponseError("trace.not.found", ['uuid' => $traceUuid]));
-            } else {
-                $response->setTrace($trace);
+        if($this->validateRequest($request)) {
+            try {
+                $trace = $this->traceRepository->find(new Uuid($request->getTraceId()));
+                if (is_null($trace)) {
+                    $response->setError(new ResponseError("trace.not.found", ['uuid' => $request->getTraceId()]));
+                } else {
+                    $response->setTrace($trace);
+                }
+            } catch (RepositoryException|InvalidValueObjectException $e) {
+                $response->setError(new ResponseError("trace.find.failed", ['uuid' => $request->getTraceId()], $e));
             }
-        } catch (RepositoryException $e) {
-            $response->setError(new ResponseError("trace.find.failed", ['uuid' => $traceUuid], $e));
+        } else {
+            $response->setError(new ResponseError("trace.request.invalid", ['uuid' => $request->getTraceId()]));
         }
         $presenter->present($response);
+    }
+
+    /**
+     * @param ShowTraceRequest $request
+     * @return bool
+     */
+    private function validateRequest(ShowTraceRequest $request): bool
+    {
+        return !empty($request->getTraceId());
     }
 }

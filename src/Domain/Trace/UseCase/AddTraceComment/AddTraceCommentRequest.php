@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace HelloBees\Domain\Trace\UseCase\AddTraceComment;
 
-use HelloBees\Domain\BeeKeeping\Entity\BeeKeeper;
-
 /**
  * Class
  *
@@ -17,31 +15,71 @@ class AddTraceCommentRequest
     /**
      * AddTraceCommentRequest constructor
      *
-     * @param BeeKeeper $beeKeeper
+     * @param string|null $beeKeeperId
+     * @param string|null $beehiveId
+     * @param string|null $apiaryId
      * @param string $comment
      */
     public function __construct(
-        private BeeKeeper $beeKeeper,
-        private string    $comment
+        private ?string $beeKeeperId,
+        private ?string $beehiveId,
+        private ?string $apiaryId,
+        private string  $comment
     )
     {
     }
 
     /**
-     * @return BeeKeeper
+     * @return string|null
      */
-    public function getBeeKeeper(): BeeKeeper
+    public function getBeeKeeperId(): ?string
     {
-        return $this->beeKeeper;
+        return $this->beeKeeperId;
     }
 
     /**
-     * @param BeeKeeper $beeKeeper
+     * @param string|null $beeKeeperId
      * @return AddTraceCommentRequest
      */
-    public function setBeeKeeper(BeeKeeper $beeKeeper): AddTraceCommentRequest
+    public function setBeeKeeperId(?string $beeKeeperId): AddTraceCommentRequest
     {
-        $this->beeKeeper = $beeKeeper;
+        $this->beeKeeperId = $beeKeeperId;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getBeehiveId(): ?string
+    {
+        return $this->beehiveId;
+    }
+
+    /**
+     * @param string|null $beehiveId
+     * @return AddTraceCommentRequest
+     */
+    public function setBeehiveId(?string $beehiveId): AddTraceCommentRequest
+    {
+        $this->beehiveId = $beehiveId;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getApiaryId(): ?string
+    {
+        return $this->apiaryId;
+    }
+
+    /**
+     * @param string|null $apiaryId
+     * @return AddTraceCommentRequest
+     */
+    public function setApiaryId(?string $apiaryId): AddTraceCommentRequest
+    {
+        $this->apiaryId = $apiaryId;
         return $this;
     }
 

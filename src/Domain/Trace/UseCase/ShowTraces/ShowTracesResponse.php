@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace HelloBees\Domain\Trace\UseCase\ShowTracesByBeeKeeper;
+namespace HelloBees\Domain\Trace\UseCase\ShowTraces;
 
 use HelloBees\Domain\SharedKernel\UseCase\UseCaseResponse;
 use HelloBees\Domain\Trace\Collection\TraceCollection;
@@ -10,10 +10,10 @@ use HelloBees\Domain\Trace\Collection\TraceCollection;
 /**
  * Class
  *
- * @class ShowTracesByBeeKeeperResponse
- * @package HelloBees\Domain\Trace\UseCase\ShowTracesByBeeKeeper
+ * @class ShowTracesResponse
+ * @package HelloBees\Domain\Trace\UseCase\ShowTraces
  */
-class ShowTracesByBeeKeeperResponse extends UseCaseResponse
+class ShowTracesResponse extends UseCaseResponse
 {
     /** @var TraceCollection */
     private TraceCollection $traceCollection;
@@ -28,9 +28,9 @@ class ShowTracesByBeeKeeperResponse extends UseCaseResponse
 
     /**
      * @param TraceCollection $traceCollection
-     * @return ShowTracesByBeeKeeperResponse
+     * @return ShowTracesResponse
      */
-    public function setTraceCollection(TraceCollection $traceCollection): ShowTracesByBeeKeeperResponse
+    public function setTraceCollection(TraceCollection $traceCollection): ShowTracesResponse
     {
         $this->traceCollection = $traceCollection;
         return $this;
