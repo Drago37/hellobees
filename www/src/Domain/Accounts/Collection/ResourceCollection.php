@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace HelloBees\Domain\Accounts\Collection;
 
-use HelloBees\Domain\Accounts\Entity\Resource;
+use HelloBees\Domain\Accounts\Entity\Credit;
 use HelloBees\Domain\SharedKernel\Collection\Collection;
 
 /**
@@ -17,10 +17,10 @@ use HelloBees\Domain\SharedKernel\Collection\Collection;
 class ResourceCollection extends Collection
 {
     /**
-     * @return class-string<Resource>
+     * @return class-string<Credit>
      */
     protected function itemClass(): string
     {
-        return Resource::class;
+        return Credit::class;
     }
 }

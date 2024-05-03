@@ -3,16 +3,19 @@
 	"license": "proprietary",
 	"description": " This is a Beekeeping software to help Beekeeper to follow and control their Apiary",
 	"require-dev": {
-		"phpstan/phpstan": "^1.10",
-		"phpunit/phpunit": "^9.6"
+		"dealerdirect/phpcodesniffer-composer-installer": "0.7.1",
+		"mikey179/vfsstream": "^1.6",
+		"phpcompatibility/php-compatibility": "9.3.5",
+		"phpstan/phpstan": "^1.10.67",
+		"phpunit/phpunit": "^11.1.3"
 	},
 	"require": {
 		"ext-json": "*",
-		"ramsey/uuid": "^4.2",
+		"ramsey/uuid": "^4.2"
 	},
 	"autoload": {
 		"psr-4": {
-			"HelloBees\\": "src/",
+			"HelloBees\\": "src/"
 		}
 	},
 	"autoload-dev": {
@@ -22,6 +25,7 @@
 	},
 	"repositories": [],
 	"scripts": {
+		"checkphp8": "phpcs -p --standard=PHPCompatibility --extensions=php --runtime-set testVersion 8.2 src",
 		"php_stan:check": "vendor/bin/phpstan analyse -c phpstan.neon"
 	},
 	"config": {

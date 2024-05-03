@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace HelloBees\Domain\Accounts\Repository;
 
 use HelloBees\Domain\Accounts\Collection\ResourceCollection;
-use HelloBees\Domain\Accounts\Entity\Resource;
+use HelloBees\Domain\Accounts\Entity\Credit;
 use HelloBees\Domain\SharedKernel\Exception\CollectionException;
 use HelloBees\Domain\SharedKernel\Exception\RepositoryException;
 use HelloBees\Domain\SharedKernel\ValueObject\Identity\Uuid;
@@ -20,10 +20,10 @@ interface ResourceRepository
 {
     /**
      * @param Uuid $uuid
-     * @return Resource|null
+     * @return Credit|null
      * @throws RepositoryException
      */
-    public function find(Uuid $uuid): ?Resource;
+    public function find(Uuid $uuid): ?Credit;
 
     /**
      * @return ResourceCollection
@@ -33,23 +33,23 @@ interface ResourceRepository
     public function findAll(): ResourceCollection;
 
     /**
-     * @param Resource $resource
+     * @param Credit $resource
      * @return void
      * @throws RepositoryException
      */
-    public function insert(Resource $resource): void;
+    public function insert(Credit $resource): void;
 
     /**
-     * @param Resource $resource
+     * @param Credit $resource
      * @return void
      * @throws RepositoryException
      */
-    public function update(Resource $resource): void;
+    public function update(Credit $resource): void;
 
     /**
-     * @param Resource $resource
+     * @param Credit $resource
      * @return void
      * @throws RepositoryException
      */
-    public function delete(Resource $resource): void;
+    public function delete(Credit $resource): void;
 }
