@@ -4,10 +4,10 @@ node_modules
 vendor
 
 ## Docker
-logs
+logs/*
 !logs/.gitkeep
-!data/
 data/*
+!data/.gitkeep
 !data/dump/
 data/dump/*
 !data/dump/.gitkeep
