@@ -5,6 +5,8 @@
 :author: Anthony Graule
 :app-name: HelloBees
 
+Ce document est fait globalement pour comprendre les différentes approches réalisées et suivre le développement du projet.
+
 == Chapitre 1
 
 Passionné d'apiculture, je constate un manque en terme d'outils numériques, je décide de réaliser une application web.
@@ -27,3 +29,21 @@ Prochaine intervention, mettre en place de vrais DTO pour les Request des Use Ca
 
 == Chapitre 3
 
+Ajout de classes Request Model en cours dans tous les use case et utilisation des types scalaires pour éviter les dépendances avec les entités. La transmission des données aux use case doit être réalisée avec les types de bases pour laisser au Domain le métier et les vérifications.
+Toute la partie src/Domain/trace a été effectuée.
+
+== Chapitre 4
+
+Je souhaite mettre en place phpunit et vérifier le coverage. Je profite de ce moment pour me monter un environnement de développement sous docker. Les différents quality tools y seront liés comme phpunit, phpcs, phpstan, etc. Cela me permettra d'être plus serein dans mes développements en réalisant des tests unitaires en même temps ainsi que des contrôle avec phpstan level 9. Je décide de déplacer dans un dossier www tout ce qui concerne mon code source afin de le séparer des logs, de la conf docker et des data (fichiers, base de données etc).
+L'environnement est monté avec nginx 1.25.5 (latest), mariadb 11.3 (latest) et php 8.2. Les images alpines sont utilisées car plus légères. Je mets en place un entrypoint pour exécuter composer à chaque run du container php afin d'avoir un environnement prêt.
+
+Un makefile est créé pour faciliter les opérations avec docker et avoir des commandes plus simple à exécuter.
+
+Je profite de mettre en place les différents fichiers de conf pour phpunit et phpstan également.
+Je mets à jour le gitignore.
+
+Un dossier public dans www est créé pour tester le serveur web et vérifier que la conf php est ok grâce au phpinfo().
+
+Un dossier dump a été créé pour y placer les dumps SQL à monter, un fichier dump.sql est présent mais sert juste de teste pour savoir si le montage était correct. Quand viendra le moment de s'attaquer à la structure de données il sera modifié.
+
+L'environnement est fonctionnel, nous allons commencer les tests unitaires pour les value object et la partie Trace de Domain qui est le seul contexte de terminé.
