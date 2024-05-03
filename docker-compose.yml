@@ -1,0 +1,41 @@
+services:
+  db:
+    image: drago99/hellobees-db:1.0
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_CHARSET: utf8mb4
+      MYSQL_DATABASE: hellobees
+    ports:
+      - 33666:3306
+    volumes:
+      - ./data/dump:/docker-entrypoint-initdb.d
+      - ./config/db:/etc/mysql/conf.d
+      - ./data/db:/var/lib/mysql
+      - ./logs/db:/var/log/mysql
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+  php:
+    image: drago99/hellobees-php:1.0
+    entrypoint: /code/entrypoint.sh
+    depends_on:
+      - db
+    volumes:
+      - ~/.ssh:/root/.ssh
+      - ./config/php/docker:/code
+      - ./config/php/hellobees.ini:/usr/local/etc/php/conf.d/hellobees.ini
+      - ./config/php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
+      - ./.git:/home/hellobees/.git
+      - ./www:/home/hellobees/www
+      - ./logs/php:/home/hellobees/logs
+      - ./data/php:/home/hellobees/data
+      - ./www/vendor:/home/hellobees/www/vendor:cached
+  web:
+    image: drago99/hellobees-web:1.0
+    depends_on:
+      - php
+    ports:
+      - 8888:80
+    volumes:
+      - ./www:/home/hellobees/www
+      - ./config/web:/etc/nginx/conf.d
+      - ./logs/web:/home/hellobees/logs/nginx
