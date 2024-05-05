@@ -59,3 +59,13 @@ db-remove:
 
 ## Reset DB with dumps
 db-reset: stop db-remove start
+
+## Execute unit test
+phpunit-test:
+	@docker compose exec php bash -c "\
+		cd /home/hellobees/www && vendor/bin/phpunit"
+
+## Inspect code coverage
+phpunit-coverage:
+	@docker compose exec php bash -c "\
+		cd /home/hellobees/www && php -d xdebug.profiler_enable=on vendor/bin/phpunit"

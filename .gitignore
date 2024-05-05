@@ -6,6 +6,8 @@ vendor
 ## Docker
 logs/*
 !logs/.gitkeep
+export/*
+!export/.gitkeep
 data/*
 !data/.gitkeep
 !data/dump/

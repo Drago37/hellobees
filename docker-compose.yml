@@ -28,6 +28,7 @@ services:
       - ./www:/home/hellobees/www
       - ./logs/php:/home/hellobees/logs
       - ./data/php:/home/hellobees/data
+      - ./export:/home/hellobees/export
       - ./www/vendor:/home/hellobees/www/vendor:cached
   web:
     image: drago99/hellobees-web:1.0

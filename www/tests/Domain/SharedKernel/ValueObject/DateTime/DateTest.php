@@ -2,10 +2,11 @@
 
 declare(strict_types=1);
 
-namespace HelloBeesTest\Domain\ValueObject\DateTime;
+namespace HelloBeesTest\Domain\SharedKernel\ValueObject\DateTime;
 
 use HelloBees\Domain\SharedKernel\Exception\InvalidValueObjectException;
 use HelloBees\Domain\SharedKernel\ValueObject\DateTime\Date;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
 /**
