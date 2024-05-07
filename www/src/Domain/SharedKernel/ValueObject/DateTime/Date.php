@@ -83,7 +83,7 @@ final readonly class Date implements ValueObjectInterface
     public static function now(): Date
     {
         $dateTimeNow = new DateTime();
-        return static::createFromDateTime($dateTimeNow);
+        return self::createFromDateTime($dateTimeNow);
     }
 
     /**
