@@ -92,7 +92,7 @@ final readonly class Date implements ValueObjectInterface
      */
     public function toString(string $format = self::FORMAT_SQL): string
     {
-        return $this->toDateTime()->format($format);
+        return $this->toNativeDateTime()->format($format);
     }
 
     /**
@@ -113,7 +113,7 @@ final readonly class Date implements ValueObjectInterface
     /**
      * @return DateTime
      */
-    public function toDateTime(): DateTime
+    public function toNativeDateTime(): DateTime
     {
         $date = new DateTime();
         $date->setDate($this->year, $this->month, $this->day);
@@ -139,7 +139,7 @@ final readonly class Date implements ValueObjectInterface
      */
     public function __toString(): string
     {
-        return $this->toDateTime()->format(self::FORMAT_SQL);
+        return $this->toNativeDateTime()->format(self::FORMAT_SQL);
     }
 
     /**

@@ -8,7 +8,6 @@ use HelloBees\Domain\SharedKernel\Exception\InvalidValueObjectException;
 use HelloBees\Domain\SharedKernel\ValueObject\DateTime\Date;
 use HelloBees\Domain\SharedKernel\ValueObject\LiteralString;
 use PHPUnit\Framework\TestCase;
-use function PHPUnit\Framework\assertEquals;
 
 /**
  * Class
@@ -32,7 +31,7 @@ class DateTest extends TestCase
      * @return void
      * @throws InvalidValueObjectException
      */
-    public function testDateIsIncorrectByDay(): void
+    public function testDateWithIncorrectDay(): void
     {
         $this->expectException(InvalidValueObjectException::class);
         new Date(2024, 1, 32);
@@ -42,7 +41,7 @@ class DateTest extends TestCase
      * @return void
      * @throws InvalidValueObjectException
      */
-    public function testDateIsIncorrectByMonth(): void
+    public function testDateWithIncorrectMonth(): void
     {
         $this->expectException(InvalidValueObjectException::class);
         new Date(2024, 13, 1);
@@ -52,7 +51,7 @@ class DateTest extends TestCase
      * @return void
      * @throws InvalidValueObjectException
      */
-    public function testDateIsIncorrectByYear(): void
+    public function testDateWithIncorrectYear(): void
     {
         $this->expectException(InvalidValueObjectException::class);
         new Date(-20, 1, 1);
@@ -62,7 +61,7 @@ class DateTest extends TestCase
      * @return void
      * @throws InvalidValueObjectException
      */
-    public function testCreateFromDatetimeIsCorrect(): void
+    public function testCreateFromDatetime(): void
     {
         $datetime = \DateTime::createFromFormat('Y-m-d', '2024-05-07');
         $date = Date::createFromDateTime($datetime);
@@ -73,7 +72,7 @@ class DateTest extends TestCase
      * @return void
      * @throws InvalidValueObjectException
      */
-    public function testCreateFromTimestampIsCorrect(): void
+    public function testCreateFromTimestamp(): void
     {
         $date = Date::createFromTimestamp(1715112617);
         self::assertEquals('2024-05-07', $date->toString());
@@ -216,7 +215,7 @@ class DateTest extends TestCase
     public function testToDatetime() : void {
         $date1 = \DateTime::createFromFormat('d/m/Y H:i:s', '07/05/2024 00:00:00');
         $dateToTest = new Date(2024, 05, 07);
-        self::assertEquals($date1, $dateToTest->toDateTime());
+        self::assertEquals($date1, $dateToTest->toNativeDateTime());
     }
 
     /**

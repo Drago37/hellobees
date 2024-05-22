@@ -59,6 +59,9 @@ final readonly class Time implements ValueObjectInterface
     public static function createFromString(string $time, string $format = self::FORMAT_HOURS_MINUTES_SECONDS): Time
     {
         $dateTime = DateTime::createFromFormat($format, $time);
+        if ($time !== $dateTime->format($format)) { // Example : 11:99:25 in DateTime is 12:39:25
+            throw new InvalidValueObjectException('Invalid value of time', ['time' => $time, 'time_datetime' => $dateTime->format($format)]);
+        }
         return self::createFromDateTime($dateTime);
     }
 
@@ -82,9 +85,9 @@ final readonly class Time implements ValueObjectInterface
     public static function createFromDateInterval(DateInterval $dateInterval): Time
     {
         return new self(
-            (int)$dateInterval->format('H'),
-            (int)$dateInterval->format('i'),
-            (int)$dateInterval->format('s')
+            (int)$dateInterval->format('%H'),
+            (int)$dateInterval->format('%i'),
+            (int)$dateInterval->format('%s')
         );
     }
 
@@ -119,13 +122,13 @@ final readonly class Time implements ValueObjectInterface
      */
     public static function zero(): Time
     {
-        return self::createFromString('00:00:00', self::FORMAT_HOURS_MINUTES_SECONDS);
+        return self::createFromString('00:00:00');
     }
 
     /**
      * @return DateTime
      */
-    public function toDateTime(): DateTime
+    public function toNativeDateTime(): DateTime
     {
         $time = new DateTime('now');
         $time->setTime($this->getHour(), $this->getMinute(), $this->getSecond());
@@ -139,7 +142,7 @@ final readonly class Time implements ValueObjectInterface
      */
     public function toString(string $format = self::FORMAT_HOURS_MINUTES_SECONDS): string
     {
-        return $this->toDateTime()->format($format);
+        return $this->toNativeDateTime()->format($format);
     }
 
     /**
@@ -147,20 +150,7 @@ final readonly class Time implements ValueObjectInterface
      */
     public function __toString(): string
     {
-        return $this->toDateTime()->format(self::FORMAT_HOURS_MINUTES_SECONDS);
-    }
-
-    /**
-     * To know if a time is the same of the actual time of this value object
-     *
-     * @param Time $time
-     * @return bool
-     */
-    public function sameValueAs(Time $time): bool
-    {
-        return $this->getHour() === $time->getHour() &&
-            $this->getMinute() === $time->getMinute() &&
-            $this->getSecond() === $time->getSecond();
+        return $this->toNativeDateTime()->format(self::FORMAT_HOURS_MINUTES_SECONDS);
     }
 
     /**
@@ -197,7 +187,8 @@ final readonly class Time implements ValueObjectInterface
         $options = [
             'options' => ['min_range' => 0, 'max_range' => 23],
         ];
-        if (!filter_var($hour, FILTER_VALIDATE_INT, $options)) {
+        // Do not use !filter_var here because 0 is a falsy value, we need to compare with false instead of 0
+        if (filter_var($hour, FILTER_VALIDATE_INT, $options) === false) {
             throw new InvalidValueObjectException("The hour must be an integer between 0 and 23, $hour given");
         }
     }
@@ -212,7 +203,8 @@ final readonly class Time implements ValueObjectInterface
         $options = [
             'options' => ['min_range' => 0, 'max_range' => 59],
         ];
-        if (!filter_var($minute, FILTER_VALIDATE_INT, $options)) {
+        // Do not use !filter_var here because 0 is a falsy value, we need to compare with false instead of 0
+        if (filter_var($minute, FILTER_VALIDATE_INT, $options) === false) {
             throw new InvalidValueObjectException(
                 "The minute must be an integer between 0 and 59, $minute given"
             );
@@ -229,7 +221,8 @@ final readonly class Time implements ValueObjectInterface
         $options = [
             'options' => ['min_range' => 0, 'max_range' => 59],
         ];
-        if (!filter_var($second, FILTER_VALIDATE_INT, $options)) {
+        // Do not use !filter_var here because 0 is a falsy value, we need to compare with false instead of 0
+        if (filter_var($second, FILTER_VALIDATE_INT, $options) === false) {
             throw new InvalidValueObjectException(
                 "The second must be an integer between 0 and 59, $second given"
             );

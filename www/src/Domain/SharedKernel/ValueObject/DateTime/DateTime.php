@@ -74,13 +74,13 @@ final class DateTime implements ValueObjectInterface
      */
     public function toString(string $format = self::FORMAT_SQL): string
     {
-        return $this->toDateTime()->format($format);
+        return $this->toNativeDateTime()->format($format);
     }
 
     /**
      * @return \DateTime
      */
-    public function toDateTime(): \DateTime
+    public function toNativeDateTime(): \DateTime
     {
         $dateTime = new \DateTime();
         $dateTime->setDate($this->date->getYear(), $this->date->getMonth(), $this->date->getDay());
