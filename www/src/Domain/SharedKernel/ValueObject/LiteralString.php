@@ -24,6 +24,14 @@ readonly class LiteralString implements ValueObjectInterface
     }
 
     /**
+     * @param string $value
+     * @return LiteralString
+     */
+    public static function createFromString(string $value): LiteralString {
+        return new static($value);
+    }
+
+    /**
      * @return string
      */
     public function getValue(): string
