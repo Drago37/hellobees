@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Domain\SharedKernel\ValueObject\DateTime;
+namespace HelloBeesTest\Domain\SharedKernel\ValueObject\DateTime;
 
 use HelloBees\Domain\SharedKernel\Exception\InvalidValueObjectException;
 use HelloBees\Domain\SharedKernel\ValueObject\DateTime\Date;
