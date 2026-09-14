@@ -11,6 +11,7 @@ abstract class DomainException extends Exception
 {
     public const CODE_INTERNAL_ERROR = 0;
     public const CODE_REPOSITORY_ERROR = 1;
+    public const CODE_NOT_FOUND_ERROR = 2;
     public const CODE_NOT_ALLOWED_ERROR = 3;
     public const CODE_BAD_USAGE_ERROR = 4;
     public const CODE_SERVER_ERROR = 5;
