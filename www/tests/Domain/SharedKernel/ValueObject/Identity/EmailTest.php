@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace HelloBeesTest\Domain\SharedKernel\ValueObject\Identity;
 
-use HelloBees\Domain\SharedKernel\Exception\InvalidValueObjectException;
-use HelloBees\Domain\SharedKernel\ValueObject\Identity\Email;
-use HelloBees\Domain\SharedKernel\ValueObject\Identity\Username;
+use HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException;
+use HelloBees\SharedKernel\Domain\ValueObject\Identity\Email;
+use HelloBees\SharedKernel\Domain\ValueObject\Identity\Username;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -24,7 +24,7 @@ class EmailTest extends TestCase
      */
     public function testEmailIsCorrect(): void {
         $string = "anthony.graule@gmail.com";
-        $email = new Email($string);
+        $email = new \HelloBees\SharedKernel\Domain\ValueObject\Identity\Email($string);
         self::assertEquals($string, $email->getValue());
     }
 
@@ -53,7 +53,7 @@ class EmailTest extends TestCase
     public function testCreateFromStringEmailIsIncorrect(): void {
         $this->expectException(InvalidValueObjectException::class);
         $string = "anthony.graule";
-        $email = Email::createFromString($string);
+        $email = \HelloBees\SharedKernel\Domain\ValueObject\Identity\Email::createFromString($string);
     }
 
     /**
@@ -61,7 +61,7 @@ class EmailTest extends TestCase
      */
     public function testGetValue(): void {
         $string = "anthony.graule@gmail.com";
-        $email = Email::createFromString($string);
+        $email = \HelloBees\SharedKernel\Domain\ValueObject\Identity\Email::createFromString($string);
         self::assertEquals($string, $email->getValue());
     }
 

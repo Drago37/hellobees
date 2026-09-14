@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace HelloBeesTest\Domain\SharedKernel\ValueObject\DateTime;
 
-use HelloBees\Domain\SharedKernel\Exception\InvalidValueObjectException;
-use HelloBees\Domain\SharedKernel\ValueObject\DateTime\Date;
-use HelloBees\Domain\SharedKernel\ValueObject\LiteralString;
+use HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException;
+use HelloBees\SharedKernel\Domain\ValueObject\DateTime\Date;
+use HelloBees\SharedKernel\Domain\ValueObject\LiteralString;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -18,8 +18,8 @@ use PHPUnit\Framework\TestCase;
 class DateTest extends TestCase
 {
     /**
-     * @return void
-     * @throws InvalidValueObjectException
+     * @throws \HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException
+     *@return void
      */
     public function testDateIsCorrect(): void
     {
@@ -28,8 +28,8 @@ class DateTest extends TestCase
     }
 
     /**
-     * @return void
-     * @throws InvalidValueObjectException
+     * @throws \HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException
+     *@return void
      */
     public function testDateWithIncorrectDay(): void
     {
@@ -44,12 +44,12 @@ class DateTest extends TestCase
     public function testDateWithIncorrectMonth(): void
     {
         $this->expectException(InvalidValueObjectException::class);
-        new Date(2024, 13, 1);
+        new \HelloBees\SharedKernel\Domain\ValueObject\DateTime\Date(2024, 13, 1);
     }
 
     /**
-     * @return void
-     * @throws InvalidValueObjectException
+     * @throws \HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException
+     *@return void
      */
     public function testDateWithIncorrectYear(): void
     {
@@ -58,8 +58,8 @@ class DateTest extends TestCase
     }
 
     /**
-     * @return void
-     * @throws InvalidValueObjectException
+     * @throws \HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException
+     *@return void
      */
     public function testCreateFromDatetime(): void
     {
@@ -69,8 +69,8 @@ class DateTest extends TestCase
     }
 
     /**
-     * @return void
-     * @throws InvalidValueObjectException
+     * @throws \HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException
+     *@return void
      */
     public function testCreateFromTimestamp(): void
     {
@@ -79,8 +79,8 @@ class DateTest extends TestCase
     }
 
     /**
-     * @return void
-     * @throws InvalidValueObjectException
+     * @throws \HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException
+     *@return void
      */
     public function testCreateFromStringWithDefaultFormatIsCorrect(): void
     {
@@ -89,18 +89,18 @@ class DateTest extends TestCase
     }
 
     /**
-     * @return void
-     * @throws InvalidValueObjectException
+     * @throws \HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException
+     *@return void
      */
     public function testCreateFromStringWithDefaultFormatIsIncorrect(): void
     {
         $this->expectException(InvalidValueObjectException::class);
-        Date::createFromString('2024-05-32');
+        \HelloBees\SharedKernel\Domain\ValueObject\DateTime\Date::createFromString('2024-05-32');
     }
 
     /**
-     * @return void
-     * @throws InvalidValueObjectException
+     * @throws \HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException
+     *@return void
      */
     public function testCreateFromStringWithFrenchFormatIsCorrect(): void
     {
@@ -109,8 +109,8 @@ class DateTest extends TestCase
     }
 
     /**
-     * @return void
-     * @throws InvalidValueObjectException
+     * @throws \HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException
+     *@return void
      */
     public function testCreateFromStringWithFrenchFormatIsIncorrect(): void
     {
@@ -119,20 +119,20 @@ class DateTest extends TestCase
     }
 
     /**
-     * @return void
-     * @throws InvalidValueObjectException
+     * @throws \HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException
+     *@return void
      */
     public function testNow() : void {
         $date = new Date(2024,05,07);
         self::assertEquals(
             (new \DateTime())->format(Date::FORMAT_STRING_FR),
-            $date->now()->toString(Date::FORMAT_STRING_FR)
+            $date->now()->toString(\HelloBees\SharedKernel\Domain\ValueObject\DateTime\Date::FORMAT_STRING_FR)
         );
     }
 
     /**
-     * @return void
-     * @throws InvalidValueObjectException
+     * @throws \HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException
+     *@return void
      */
     public function testToStringSqlFormat() : void {
         $date = new Date(2024,05,07);
@@ -143,8 +143,8 @@ class DateTest extends TestCase
     }
 
     /**
-     * @return void
-     * @throws InvalidValueObjectException
+     * @throws \HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException
+     *@return void
      */
     public function testToStringFrenchFormat() : void {
         $date = new Date(2024,05,07);
@@ -155,20 +155,20 @@ class DateTest extends TestCase
     }
 
     /**
-     * @return void
-     * @throws InvalidValueObjectException
+     * @throws \HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException
+     *@return void
      */
     public function testToStringEnglishFormat() : void {
-        $date = new Date(2024,05,07);
+        $date = new \HelloBees\SharedKernel\Domain\ValueObject\DateTime\Date(2024, 05, 07);
         self::assertEquals(
             '05/07/2024',
-            $date->toString(Date::FORMAT_STRING_EN)
+            $date->toString(\HelloBees\SharedKernel\Domain\ValueObject\DateTime\Date::FORMAT_STRING_EN)
         );
     }
 
     /**
-     * @return void
-     * @throws InvalidValueObjectException
+     * @throws \HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException
+     *@return void
      */
     public function testEqualsIsCorrect() : void {
         $date1 = new Date(2024,05,07);
@@ -177,8 +177,8 @@ class DateTest extends TestCase
     }
 
     /**
+     * @throws \HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException
      * @return void
-     * @throws InvalidValueObjectException
      */
     public function testEqualsIsIncorrect() : void {
         $date1 = new Date(2024,05,07);
@@ -187,8 +187,8 @@ class DateTest extends TestCase
     }
 
     /**
-     * @return void
-     * @throws InvalidValueObjectException
+     * @throws \HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException
+     *@return void
      */
     public function testEqualsWithIncorrectParamType() : void {
         $this->expectException(\TypeError::class);
@@ -198,8 +198,8 @@ class DateTest extends TestCase
     }
 
     /**
+     * @throws \HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException
      * @return void
-     * @throws InvalidValueObjectException
      */
     public function testEqualsWithIncorrectValueObjectParamType() : void {
         $this->expectException(InvalidValueObjectException::class);
@@ -209,8 +209,8 @@ class DateTest extends TestCase
     }
 
     /**
+     * @throws \HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException
      * @return void
-     * @throws InvalidValueObjectException
      */
     public function testToDatetime() : void {
         $date1 = \DateTime::createFromFormat('d/m/Y H:i:s', '07/05/2024 00:00:00');
@@ -219,12 +219,12 @@ class DateTest extends TestCase
     }
 
     /**
+     * @throws \HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException
      * @return void
-     * @throws InvalidValueObjectException
      */
     public function testToTimestamp() : void {
         $date1 = \DateTime::createFromFormat('d/m/Y H:i:s', '07/05/2024 00:00:00');
-        $dateToTest = new Date(2024, 05, 07);
+        $dateToTest = new \HelloBees\SharedKernel\Domain\ValueObject\DateTime\Date(2024, 05, 07);
         self::assertEquals($date1->getTimestamp(), $dateToTest->toTimestamp());
     }
 
@@ -238,8 +238,8 @@ class DateTest extends TestCase
     }
 
     /**
+     * @throws \HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException
      * @return void
-     * @throws InvalidValueObjectException
      */
     public function testGetYear() : void {
         $dateToTest = new Date(2024, 05, 07);
@@ -247,8 +247,8 @@ class DateTest extends TestCase
     }
 
     /**
+     * @throws \HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException
      * @return void
-     * @throws InvalidValueObjectException
      */
     public function testGetMonth() : void {
         $dateToTest = new Date(2024, 05, 07);
@@ -256,8 +256,8 @@ class DateTest extends TestCase
     }
 
     /**
+     * @throws \HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException
      * @return void
-     * @throws InvalidValueObjectException
      */
     public function testGetDay() : void {
         $dateToTest = new Date(2024, 05, 07);

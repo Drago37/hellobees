@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace HelloBeesTest\Domain\SharedKernel\ValueObject\Identity;
 
-use HelloBees\Domain\SharedKernel\Exception\InvalidValueObjectException;
-use HelloBees\Domain\SharedKernel\ValueObject\Identity\PhoneNumber;
-use HelloBees\Domain\SharedKernel\ValueObject\Identity\Username;
+use HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException;
+use HelloBees\SharedKernel\Domain\ValueObject\Identity\Username;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -39,7 +38,7 @@ class UsernameTest extends TestCase
      */
     public function testUsernameWithLastnameIsIncorrect(): void {
         $this->expectException(InvalidValueObjectException::class);
-        $username = new Username("john", "");
+        $username = new \HelloBees\SharedKernel\Domain\ValueObject\Identity\Username("john", "");
     }
 
     /**
@@ -62,13 +61,13 @@ class UsernameTest extends TestCase
      * @return void
      */
     public function testGetFullName(): void {
-        $username = new Username("john", "doe");
+        $username = new \HelloBees\SharedKernel\Domain\ValueObject\Identity\Username("john", "doe");
         self::assertEquals("john doe", $username->getFullName());
     }
 
     /**
-     * @return void
-     * @throws InvalidValueObjectException
+     * @throws \HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException
+     *@return void
      */
     public function testEqualsIsEqual(): void {
         $username1 = new Username("john", "doe");
@@ -81,8 +80,8 @@ class UsernameTest extends TestCase
      * @throws InvalidValueObjectException
      */
     public function testEqualsIsNotEqual(): void {
-        $username1 = new Username("john", "doe");
-        $username2 = new Username("jean", "bon");
+        $username1 = new \HelloBees\SharedKernel\Domain\ValueObject\Identity\Username("john", "doe");
+        $username2 = new \HelloBees\SharedKernel\Domain\ValueObject\Identity\Username("jean", "bon");
         self::assertFalse($username1->equals($username2));
     }
 
@@ -105,8 +104,8 @@ class UsernameTest extends TestCase
     public function testEqualsWithIncorrectValueObjectParamType(): void
     {
         $this->expectException(InvalidValueObjectException::class);
-        $username = new Username("john", "doe");
-        $phonenumber = new PhoneNumber('0632333435');
+        $username = new \HelloBees\SharedKernel\Domain\ValueObject\Identity\Username("john", "doe");
+        $phonenumber = new \HelloBees\SharedKernel\Domain\ValueObject\Identity\PhoneNumber('0632333435');
         $username->equals($phonenumber);
     }
 

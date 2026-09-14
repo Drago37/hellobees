@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace HelloBeesTest\Domain\SharedKernel\ValueObject\DateTime;
 
-use HelloBees\Domain\SharedKernel\Exception\InvalidValueObjectException;
-use HelloBees\Domain\SharedKernel\ValueObject\DateTime\Date;
-use HelloBees\Domain\SharedKernel\ValueObject\DateTime\DateTime;
-use HelloBees\Domain\SharedKernel\ValueObject\DateTime\Time;
-use HelloBees\Domain\SharedKernel\ValueObject\LiteralString;
+use HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException;
+use HelloBees\SharedKernel\Domain\ValueObject\DateTime\Date;
+use HelloBees\SharedKernel\Domain\ValueObject\DateTime\DateTime;
+use HelloBees\SharedKernel\Domain\ValueObject\DateTime\Time;
+use HelloBees\SharedKernel\Domain\ValueObject\LiteralString;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -26,26 +26,26 @@ class DateTimeTest extends TestCase
      */
     public function testDateTimeIsCorrectWithTime(): void
     {
-        $date = new Date(2024, 1, 1);
-        $time = new Time(11, 55, 22);
-        $dateTime = new DateTime($date, $time);
+        $date = new \HelloBees\SharedKernel\Domain\ValueObject\DateTime\Date(2024, 1, 1);
+        $time = new \HelloBees\SharedKernel\Domain\ValueObject\DateTime\Time(11, 55, 22);
+        $dateTime = new \HelloBees\SharedKernel\Domain\ValueObject\DateTime\DateTime($date, $time);
         self::assertEquals('2024-01-01 11:55:22', $dateTime->toString());
     }
 
     /**
-     * @return void
-     * @throws InvalidValueObjectException
+     * @throws \HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException
+     *@return void
      */
     public function testDateTimeIsCorrectWithoutTime(): void
     {
-        $date = new Date(2024, 1, 1);
-        $dateTime = new DateTime($date);
+        $date = new \HelloBees\SharedKernel\Domain\ValueObject\DateTime\Date(2024, 1, 1);
+        $dateTime = new \HelloBees\SharedKernel\Domain\ValueObject\DateTime\DateTime($date);
         self::assertEquals('2024-01-01 00:00:00', $dateTime->toString());
     }
 
     /**
-     * @return void
-     * @throws InvalidValueObjectException
+     * @throws \HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException
+     *@return void
      */
     public function testCreateFromDateTime(): void
     {
@@ -61,7 +61,7 @@ class DateTimeTest extends TestCase
     public function testCreateFromTimestamp(): void
     {
         $dateTimeNative = new \DateTime();
-        $dateTime = DateTime::createFromTimestamp($dateTimeNative->getTimestamp());
+        $dateTime = \HelloBees\SharedKernel\Domain\ValueObject\DateTime\DateTime::createFromTimestamp($dateTimeNative->getTimestamp());
         self::assertEquals($dateTimeNative->format("Y-m-d H:i:s"), $dateTime->toString());
     }
 
@@ -72,20 +72,20 @@ class DateTimeTest extends TestCase
     public function testNow(): void
     {
         $dateTimeNative = new \DateTime();
-        $dateTime = DateTime::now();
+        $dateTime = \HelloBees\SharedKernel\Domain\ValueObject\DateTime\DateTime::now();
         self::assertEquals($dateTimeNative->format("Y-m-d H:i:s"), $dateTime->toString());
     }
 
     /**
-     * @return void
-     * @throws InvalidValueObjectException
+     * @throws \HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException
+     *@return void
      */
     public function testToNativeDatetime(): void
     {
         $dateTimeNative = \DateTime::createFromFormat("Y-m-d H:i:s", "2024-02-01 11:55:22");
-        $date = new Date(2024, 2, 1);
-        $time = new Time(11, 55, 22);
-        $dateTimeNative2 = (new DateTime($date, $time))->toNativeDateTime();
+        $date = new \HelloBees\SharedKernel\Domain\ValueObject\DateTime\Date(2024, 2, 1);
+        $time = new \HelloBees\SharedKernel\Domain\ValueObject\DateTime\Time(11, 55, 22);
+        $dateTimeNative2 = (new \HelloBees\SharedKernel\Domain\ValueObject\DateTime\DateTime($date, $time))->toNativeDateTime();
         self::assertEquals($dateTimeNative, $dateTimeNative2);
     }
 
@@ -96,9 +96,9 @@ class DateTimeTest extends TestCase
     public function testToTimestamp(): void
     {
         $dateTimeNative = \DateTime::createFromFormat("Y-m-d H:i:s", "2024-02-01 11:55:22");
-        $date = new Date(2024, 2, 1);
+        $date = new \HelloBees\SharedKernel\Domain\ValueObject\DateTime\Date(2024, 2, 1);
         $time = new Time(11, 55, 22);
-        $dateTime = new DateTime($date, $time);
+        $dateTime = new \HelloBees\SharedKernel\Domain\ValueObject\DateTime\DateTime($date, $time);
         self::assertEquals($dateTimeNative->getTimestamp(), $dateTime->toTimestamp());
     }
 
@@ -110,34 +110,34 @@ class DateTimeTest extends TestCase
     {
         $date = new Date(2024, 1, 1);
         $time = new Time(11, 55, 22);
-        $dateTime = new DateTime($date, $time);
+        $dateTime = new \HelloBees\SharedKernel\Domain\ValueObject\DateTime\DateTime($date, $time);
         self::assertEquals("2024-01-01 11:55:22", $dateTime->toString());
     }
 
     /**
-     * @return void
-     * @throws InvalidValueObjectException
+     * @throws \HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException
+     *@return void
      */
     public function testToStringWithFrenchFormat(): void
     {
-        $date = new Date(2024, 1, 1);
-        $time = new Time(11, 55, 22);
-        $dateTime = new DateTime($date, $time);
-        self::assertEquals("01/01/2024 11:55:22", $dateTime->toString(DateTime::FORMAT_FR));
+        $date = new \HelloBees\SharedKernel\Domain\ValueObject\DateTime\Date(2024, 1, 1);
+        $time = new \HelloBees\SharedKernel\Domain\ValueObject\DateTime\Time(11, 55, 22);
+        $dateTime = new \HelloBees\SharedKernel\Domain\ValueObject\DateTime\DateTime($date, $time);
+        self::assertEquals("01/01/2024 11:55:22", $dateTime->toString(\HelloBees\SharedKernel\Domain\ValueObject\DateTime\DateTime::FORMAT_FR));
     }
 
     /**
-     * @return void
-     * @throws InvalidValueObjectException
+     * @throws \HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException
+     *@return void
      */
     public function testEqualsIsCorrect(): void
     {
-        $date = new Date(2024, 2, 1);
+        $date = new \HelloBees\SharedKernel\Domain\ValueObject\DateTime\Date(2024, 2, 1);
         $time = new Time(11, 55, 22);
-        $dateTime = new DateTime($date, $time);
-        $date2 = new Date(2024, 2, 1);
+        $dateTime = new \HelloBees\SharedKernel\Domain\ValueObject\DateTime\DateTime($date, $time);
+        $date2 = new \HelloBees\SharedKernel\Domain\ValueObject\DateTime\Date(2024, 2, 1);
         $time2 = new Time(11, 55, 22);
-        $dateTime2 = new DateTime($date2, $time2);
+        $dateTime2 = new \HelloBees\SharedKernel\Domain\ValueObject\DateTime\DateTime($date2, $time2);
         self::assertTrue($dateTime->equals($dateTime2));
     }
 
@@ -147,11 +147,11 @@ class DateTimeTest extends TestCase
      */
     public function testEqualsIsIncorrect(): void
     {
-        $date = new Date(2024, 2, 1);
+        $date = new \HelloBees\SharedKernel\Domain\ValueObject\DateTime\Date(2024, 2, 1);
         $time = new Time(11, 55, 22);
-        $dateTime = new DateTime($date, $time);
-        $date2 = new Date(2027, 2, 27);
-        $time2 = new Time(11, 55, 22);
+        $dateTime = new \HelloBees\SharedKernel\Domain\ValueObject\DateTime\DateTime($date, $time);
+        $date2 = new \HelloBees\SharedKernel\Domain\ValueObject\DateTime\Date(2027, 2, 27);
+        $time2 = new \HelloBees\SharedKernel\Domain\ValueObject\DateTime\Time(11, 55, 22);
         $dateTime2 = new DateTime($date2, $time2);
         self::assertFalse($dateTime->equals($dateTime2));
     }
@@ -163,9 +163,9 @@ class DateTimeTest extends TestCase
     public function testEqualsWithIncorrectParamType(): void
     {
         $this->expectException(\TypeError::class);
-        $date = Date::now();
-        $time = Time::now();
-        $dateTime = new DateTime($date, $time);
+        $date = \HelloBees\SharedKernel\Domain\ValueObject\DateTime\Date::now();
+        $time = \HelloBees\SharedKernel\Domain\ValueObject\DateTime\Time::now();
+        $dateTime = new \HelloBees\SharedKernel\Domain\ValueObject\DateTime\DateTime($date, $time);
         $dateTime2 = new \DateTime();
         $dateTime->equals($dateTime2);
     }
@@ -177,9 +177,9 @@ class DateTimeTest extends TestCase
     public function testEqualsWithIncorrectValueObjectParamType(): void
     {
         $this->expectException(InvalidValueObjectException::class);
-        $date = new Date(2024, 2, 1);
+        $date = new \HelloBees\SharedKernel\Domain\ValueObject\DateTime\Date(2024, 2, 1);
         $time = new Time(11, 55, 22);
-        $dateTime = new DateTime($date, $time);
+        $dateTime = new \HelloBees\SharedKernel\Domain\ValueObject\DateTime\DateTime($date, $time);
         $dateTime2 = new LiteralString('aaa');
         $dateTime->equals($dateTime2);
     }
@@ -190,33 +190,33 @@ class DateTimeTest extends TestCase
      */
     public function testMagicToString(): void
     {
-        $date = new Date(2024, 1, 1);
+        $date = new \HelloBees\SharedKernel\Domain\ValueObject\DateTime\Date(2024, 1, 1);
         $time = new Time(11, 55, 22);
-        $dateTime = new DateTime($date, $time);
+        $dateTime = new \HelloBees\SharedKernel\Domain\ValueObject\DateTime\DateTime($date, $time);
         self::assertEquals("01/01/2024 à 11:55:22", $dateTime);
     }
 
     /**
-     * @return void
-     * @throws InvalidValueObjectException
+     * @throws \HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException
+     *@return void
      */
     public function testGetDate(): void
     {
         $date = new Date(2024, 2, 1);
         $time = new Time(11, 55, 22);
-        $dateTime = new DateTime($date, $time);
+        $dateTime = new \HelloBees\SharedKernel\Domain\ValueObject\DateTime\DateTime($date, $time);
         self::assertEquals($date, $dateTime->getDate());
     }
 
     /**
-     * @return void
-     * @throws InvalidValueObjectException
+     * @throws \HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException
+     *@return void
      */
     public function testGetTime(): void
     {
         $date = new Date(2024, 2, 1);
         $time = new Time(11, 55, 22);
-        $dateTime = new DateTime($date, $time);
+        $dateTime = new \HelloBees\SharedKernel\Domain\ValueObject\DateTime\DateTime($date, $time);
         self::assertEquals($time, $dateTime->getTime());
     }
 

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace HelloBeesTest\Domain\SharedKernel\ValueObject\Identity;
 
-use HelloBees\Domain\SharedKernel\Exception\InvalidValueObjectException;
-use HelloBees\Domain\SharedKernel\ValueObject\Identity\PhoneNumber;
-use HelloBees\Domain\SharedKernel\ValueObject\Identity\Uuid;
+use HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException;
+use HelloBees\SharedKernel\Domain\ValueObject\Identity\PhoneNumber;
+use HelloBees\SharedKernel\Domain\ValueObject\Identity\Uuid;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -50,7 +50,7 @@ class UuidTest extends TestCase
      */
     public function testCreateFromStringIsIncorrect(): void {
         $this->expectException(InvalidValueObjectException::class);
-        $uuid = Uuid::createFromString("123");
+        $uuid = \HelloBees\SharedKernel\Domain\ValueObject\Identity\Uuid::createFromString("123");
     }
 
     /**
@@ -62,8 +62,8 @@ class UuidTest extends TestCase
     }
 
     /**
-     * @return void
-     * @throws InvalidValueObjectException
+     * @throws \HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException
+     *@return void
      */
     public function testEqualsIsEqual(): void {
         $uuid1 = Uuid::createFromString(static::UUID_EXAMPLE);
@@ -72,8 +72,8 @@ class UuidTest extends TestCase
     }
 
     /**
-     * @return void
-     * @throws InvalidValueObjectException
+     * @throws \HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException
+     *@return void
      */
     public function testEqualsIsNotEqual(): void {
         $uuid1 = Uuid::createFromString(static::UUID_EXAMPLE);
@@ -82,8 +82,8 @@ class UuidTest extends TestCase
     }
 
     /**
-     * @return void
-     * @throws InvalidValueObjectException
+     * @throws \HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException
+     *@return void
      */
     public function testEqualsWithIncorrectParamType(): void
     {
@@ -94,8 +94,8 @@ class UuidTest extends TestCase
     }
 
     /**
-     * @return void
-     * @throws InvalidValueObjectException
+     * @throws \HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException
+     *@return void
      */
     public function testEqualsWithIncorrectValueObjectParamType(): void
     {

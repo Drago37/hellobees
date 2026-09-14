@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace HelloBeesTest\Domain\SharedKernel\ValueObject\DateTime;
 
-use HelloBees\Domain\SharedKernel\Exception\InvalidValueObjectException;
-use HelloBees\Domain\SharedKernel\ValueObject\DateTime\Time;
-use HelloBees\Domain\SharedKernel\ValueObject\LiteralString;
+use HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException;
+use HelloBees\SharedKernel\Domain\ValueObject\DateTime\Time;
+use HelloBees\SharedKernel\Domain\ValueObject\LiteralString;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -34,7 +34,7 @@ class TimeTest extends TestCase
     public function testTimeWithIncorrectHour(): void
     {
         $this->expectException(InvalidValueObjectException::class);
-        new Time(25, 59, 01);
+        new \HelloBees\SharedKernel\Domain\ValueObject\DateTime\Time(25, 59, 01);
     }
 
     /**
@@ -44,7 +44,7 @@ class TimeTest extends TestCase
     public function testTimeWithIncorrectMinute(): void
     {
         $this->expectException(InvalidValueObjectException::class);
-        new Time(23, 68, 01);
+        new \HelloBees\SharedKernel\Domain\ValueObject\DateTime\Time(23, 68, 01);
     }
 
     /**
@@ -64,7 +64,7 @@ class TimeTest extends TestCase
     public function testCreateFromDateTime(): void
     {
         $datetime = new \DateTime();
-        $time = Time::createFromDateTime($datetime);
+        $time = \HelloBees\SharedKernel\Domain\ValueObject\DateTime\Time::createFromDateTime($datetime);
         self::assertEquals($datetime->format('H:i:s'), $time->toString());
     }
 
@@ -74,7 +74,7 @@ class TimeTest extends TestCase
      */
     public function testCreateFromStringWithFullFormat(): void
     {
-        $time = Time::createFromString('11:30:25');
+        $time = \HelloBees\SharedKernel\Domain\ValueObject\DateTime\Time::createFromString('11:30:25');
         self::assertEquals('11:30:25', $time->toString());
     }
 
@@ -84,7 +84,7 @@ class TimeTest extends TestCase
      */
     public function testCreateFromStringWithHourMinuteFormat(): void
     {
-        $time = Time::createFromString('11:30', Time::FORMAT_HOURS_MINUTES);
+        $time = Time::createFromString('11:30', \HelloBees\SharedKernel\Domain\ValueObject\DateTime\Time::FORMAT_HOURS_MINUTES);
         self::assertEquals('11:30:00', $time->toString());
     }
 
@@ -105,7 +105,7 @@ class TimeTest extends TestCase
     public function testCreateFromTimestamp(): void
     {
         $datetime = new \DateTime();
-        $time = Time::createFromTimestamp($datetime->getTimestamp());
+        $time = \HelloBees\SharedKernel\Domain\ValueObject\DateTime\Time::createFromTimestamp($datetime->getTimestamp());
         self::assertEquals($datetime->format('H:i:s'), $time->toString());
     }
 
@@ -116,18 +116,18 @@ class TimeTest extends TestCase
     public function testCreateFromDateInterval(): void
     {
         $dateInterval = new \DateInterval("PT2H8M22S"); // 02:08:22
-        $time = Time::createFromDateInterval($dateInterval);
+        $time = \HelloBees\SharedKernel\Domain\ValueObject\DateTime\Time::createFromDateInterval($dateInterval);
         self::assertEquals($dateInterval->format('%H:%I:%s'), $time->toString());
     }
 
     /**
-     * @return void
-     * @throws InvalidValueObjectException
+     * @throws \HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException
+     *@return void
      */
     public function testNow() : void {
         $time = new Time(5,10,15);
         self::assertEquals(
-            (new \DateTime())->format(Time::FORMAT_HOURS_MINUTES_SECONDS),
+            (new \DateTime())->format(\HelloBees\SharedKernel\Domain\ValueObject\DateTime\Time::FORMAT_HOURS_MINUTES_SECONDS),
             $time->now()->toString()
         );
     }
@@ -182,7 +182,7 @@ class TimeTest extends TestCase
      */
     public function testEqualsWithIncorrectParamType() : void {
         $this->expectException(\TypeError::class);
-        $time = new Time(5,10,15);
+        $time = new \HelloBees\SharedKernel\Domain\ValueObject\DateTime\Time(5,10,15);
         $time2 = new \DateTime();
         $time->equals($time2);
     }
@@ -221,7 +221,7 @@ class TimeTest extends TestCase
      * @throws InvalidValueObjectException
      */
     public function testGetMinute() : void {
-        $time = new Time(5,10,15);
+        $time = new \HelloBees\SharedKernel\Domain\ValueObject\DateTime\Time(5,10,15);
         self::assertEquals(10, $time->getMinute());
     }
 

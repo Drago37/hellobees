@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace HelloBeesTest\Domain\SharedKernel\ValueObject;
 
-use HelloBees\Domain\SharedKernel\Exception\InvalidValueObjectException;
-use HelloBees\Domain\SharedKernel\ValueObject\DateTime\Date;
-use HelloBees\Domain\SharedKernel\ValueObject\LiteralString;
+use HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException;
+use HelloBees\SharedKernel\Domain\ValueObject\DateTime\Date;
+use HelloBees\SharedKernel\Domain\ValueObject\LiteralString;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -23,7 +23,7 @@ class LiteralStringTest extends TestCase
      */
     public function testLiteralStringIsCorrect(): void {
         $string = "foo";
-        $literalString = new LiteralString($string);
+        $literalString = new \HelloBees\SharedKernel\Domain\ValueObject\LiteralString($string);
         self::assertEquals($string, $literalString);
     }
 
@@ -32,7 +32,7 @@ class LiteralStringTest extends TestCase
      */
     public function testCreateFromString(): void {
         $string = "foo";
-        $literalString = LiteralString::createFromString($string);
+        $literalString = \HelloBees\SharedKernel\Domain\ValueObject\LiteralString::createFromString($string);
         self::assertEquals($string, $literalString);
     }
 
@@ -67,7 +67,7 @@ class LiteralStringTest extends TestCase
      * @throws InvalidValueObjectException
      */
     public function testEqualsIsEqual(): void {
-        $literalString1 = LiteralString::createFromString("foo");
+        $literalString1 = \HelloBees\SharedKernel\Domain\ValueObject\LiteralString::createFromString("foo");
         $literalString2 = LiteralString::createFromString("foo");
         self::assertTrue($literalString1->equals($literalString2));
     }
@@ -78,7 +78,7 @@ class LiteralStringTest extends TestCase
      */
     public function testEqualsIsNotEqual(): void {
         $literalString1 = LiteralString::createFromString("foo");
-        $literalString2 = LiteralString::createFromString("bar");
+        $literalString2 = \HelloBees\SharedKernel\Domain\ValueObject\LiteralString::createFromString("bar");
         self::assertFalse($literalString1->equals($literalString2));
     }
 
@@ -111,7 +111,7 @@ class LiteralStringTest extends TestCase
      */
     public function testMagicToString(): void
     {
-        $literalString1 = LiteralString::createFromString("foo");
+        $literalString1 = \HelloBees\SharedKernel\Domain\ValueObject\LiteralString::createFromString("foo");
         self::assertEquals("foo", $literalString1);
     }
 
