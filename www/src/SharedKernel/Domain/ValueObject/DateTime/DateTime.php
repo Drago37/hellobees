@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace HelloBees\SharedKernel\Domain\ValueObject\DateTime;
 
 use HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException;

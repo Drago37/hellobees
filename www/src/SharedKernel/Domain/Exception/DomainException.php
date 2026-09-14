@@ -41,7 +41,7 @@ abstract class DomainException extends Exception
     }
 
     /**
-     * Retourne le nom de la classe instancié (pas la classe mère)
+     * Returns the name of the instantiated class (not the parent class)
      */
     protected function getClassName(): string
     {
