@@ -6,6 +6,7 @@ namespace HelloBees\SharedKernel\Domain\ValueObject\DateTime;
 
 use DateTime;
 use HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException;
+use HelloBees\SharedKernel\Domain\ValueObject\ValueObjectInterface;
 
 /**
  * Class
@@ -14,7 +15,7 @@ use HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException;
  * @package HelloBees\Domain\SharedKernel\ValueObject\DateTime
  * @phpstan-consistent-constructor
  */
-final readonly class Date
+final readonly class Date implements ValueObjectInterface
 {
     public const FORMAT_SQL = 'Y-m-d';
     public const FORMAT_STRING_FR = 'd/m/Y';
@@ -99,12 +100,18 @@ final readonly class Date
     }
 
     /**
-     * @param Date $date
+     * @param ValueObjectInterface $date
      *
+     * @throws InvalidValueObjectException
      * @return bool
      */
-    public function equals(Date $date): bool
+    public function equals(ValueObjectInterface $date): bool
     {
+        if (!$date instanceof self) {
+            throw new InvalidValueObjectException(
+                "Equal checking failed because not a " . self::class . ", " . get_class($date) . " given"
+            );
+        }
         return $this->toString() === $date->toString();
     }
 

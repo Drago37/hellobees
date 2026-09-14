@@ -7,6 +7,7 @@ namespace HelloBees\SharedKernel\Domain\ValueObject\DateTime;
 use DateInterval;
 use DateTime;
 use HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException;
+use HelloBees\SharedKernel\Domain\ValueObject\ValueObjectInterface;
 
 /**
  * Class
@@ -15,7 +16,7 @@ use HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException;
  * @package HelloBees\Domain\SharedKernel\ValueObject\DateTime
  * @phpstan-consistent-constructor
  */
-final readonly class Time
+final readonly class Time implements ValueObjectInterface
 {
     public const FORMAT_HOURS_MINUTES_SECONDS = 'H:i:s';
     public const FORMAT_HOURS_MINUTES = 'H:i';
@@ -105,12 +106,18 @@ final readonly class Time
     }
 
     /**
-     * @param Time $time
+     * @param ValueObjectInterface $time
      *
+     * @throws InvalidValueObjectException
      * @return bool
      */
-    public function equals(Time $time): bool
+    public function equals(ValueObjectInterface $time): bool
     {
+        if (!$time instanceof self) {
+            throw new InvalidValueObjectException(
+                "Equal checking failed because not a " . self::class . ", " . get_class($time) . " given"
+            );
+        }
         return $this->toString() === $time->toString();
     }
 

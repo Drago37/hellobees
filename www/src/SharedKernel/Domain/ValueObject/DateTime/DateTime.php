@@ -3,6 +3,7 @@
 namespace HelloBees\SharedKernel\Domain\ValueObject\DateTime;
 
 use HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException;
+use HelloBees\SharedKernel\Domain\ValueObject\ValueObjectInterface;
 
 /**
  * Class
@@ -10,7 +11,7 @@ use HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException;
  * @class DateTime
  * @package HelloBees\Domain\SharedKernel\ValueObject\DateTime
  */
-final class DateTime
+final class DateTime implements ValueObjectInterface
 {
     public const FORMAT_SQL = 'Y-m-d H:i:s';
     public const FORMAT_FR = 'd/m/Y H:i:s';
@@ -127,12 +128,18 @@ final class DateTime
     }
 
     /**
-     * @param DateTime $dateTime
+     * @param ValueObjectInterface $dateTime
      *
+     * @throws InvalidValueObjectException
      * @return bool
      */
-    public function equals(DateTime $dateTime): bool
+    public function equals(ValueObjectInterface $dateTime): bool
     {
+        if (!$dateTime instanceof self) {
+            throw new InvalidValueObjectException(
+                "Equal checking failed because not a " . self::class . ", " . get_class($dateTime) . " given"
+            );
+        }
         return $this->toString() === $dateTime->toString();
     }
 }

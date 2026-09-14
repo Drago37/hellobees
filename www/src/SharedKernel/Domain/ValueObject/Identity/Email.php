@@ -11,16 +11,16 @@ use HelloBees\SharedKernel\Domain\ValueObject\LiteralString;
  * Class
  *
  * @class   Email
- * @package HelloBees\Domain\SharedKernel\ValueObject\Identity
+ * @package HelloBees\SharedKernel\Domain\ValueObject\Identity
  */
-final readonly class Email
+final readonly class Email extends LiteralString
 {
     /**
      * @param string $value
      *
-     * @throws \HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException
+     * @throws InvalidValueObjectException
      */
-    public function __construct(public string $value)
+    public function __construct(string $value)
     {
         if (empty($value) || !filter_var($value, FILTER_VALIDATE_EMAIL)) {
             throw new InvalidValueObjectException(
@@ -30,6 +30,7 @@ final readonly class Email
                 ]
             );
         }
+        parent::__construct($value);
     }
 
     /**
