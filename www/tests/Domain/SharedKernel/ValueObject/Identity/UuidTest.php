@@ -9,53 +9,32 @@ use HelloBees\SharedKernel\Domain\ValueObject\Identity\PhoneNumber;
 use HelloBees\SharedKernel\Domain\ValueObject\Identity\Uuid;
 use PHPUnit\Framework\TestCase;
 
-/**
- * Class
- *
- * @class   UuidTest
- * @package HelloBeesTest\Domain\ValueObject\Map
- */
 class UuidTest extends TestCase
 {
 
     private const UUID_EXAMPLE = "998fd066-c786-4064-9c98-e378e450cd4a";
     private const UUID_VALID_PATTERN = '/\A[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}\z/';
 
-    /**
-     * @return void
-     */
     public function testUuidIsCorrect(): void {
         $uuid = new Uuid(static::UUID_EXAMPLE);
         self::assertEquals(static::UUID_EXAMPLE, $uuid);
     }
 
-    /**
-     * @return void
-     */
     public function testUuidIsIncorrect(): void {
         $this->expectException(InvalidValueObjectException::class);
         $uuid = new Uuid("123");
     }
 
-    /**
-     * @return void
-     */
     public function testCreateFromStringIsCorrect(): void {
         $uuid = Uuid::createFromString(static::UUID_EXAMPLE);
         self::assertEquals(static::UUID_EXAMPLE, $uuid);
     }
 
-    /**
-     * @return void
-     */
     public function testCreateFromStringIsIncorrect(): void {
         $this->expectException(InvalidValueObjectException::class);
         $uuid = \HelloBees\SharedKernel\Domain\ValueObject\Identity\Uuid::createFromString("123");
     }
 
-    /**
-     * @return void
-     */
     public function testGetValue(): void {
         $uuid = Uuid::createFromString(static::UUID_EXAMPLE);
         self::assertEquals(static::UUID_EXAMPLE, $uuid->getValue());
@@ -63,7 +42,6 @@ class UuidTest extends TestCase
 
     /**
      * @throws \HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException
-     *@return void
      */
     public function testEqualsIsEqual(): void {
         $uuid1 = Uuid::createFromString(static::UUID_EXAMPLE);
@@ -73,7 +51,6 @@ class UuidTest extends TestCase
 
     /**
      * @throws \HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException
-     *@return void
      */
     public function testEqualsIsNotEqual(): void {
         $uuid1 = Uuid::createFromString(static::UUID_EXAMPLE);
@@ -83,7 +60,6 @@ class UuidTest extends TestCase
 
     /**
      * @throws \HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException
-     *@return void
      */
     public function testEqualsWithIncorrectParamType(): void
     {
@@ -95,7 +71,6 @@ class UuidTest extends TestCase
 
     /**
      * @throws \HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException
-     *@return void
      */
     public function testEqualsWithIncorrectValueObjectParamType(): void
     {
@@ -105,9 +80,6 @@ class UuidTest extends TestCase
         $uuid->equals($phonenumber);
     }
 
-    /**
-     * @return void
-     */
     public function testMagicToString(): void
     {
         $uuid = Uuid::createFromString(static::UUID_EXAMPLE);
@@ -115,7 +87,6 @@ class UuidTest extends TestCase
     }
 
     /**
-     * @return void
      * @throws InvalidValueObjectException
      */
     public function testGenerate(): void

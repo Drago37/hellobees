@@ -8,29 +8,14 @@ use HelloBees\BeeKeeping\Domain\Repository\BeekeeperRepository;
 use HelloBees\SharedKernel\Domain\Exception\RepositoryException;
 use HelloBees\SharedKernel\Domain\UseCase\ResponseError;
 
-/**
- * Class
- * @class AddBeekeeper
- * @package HelloBees\Domain\BeeKeeping\UseCase
- */
 class AddBeekeeper
 {
-    /**
-     * AddBeekeeper constructor
-     *
-     * @param \HelloBees\BeeKeeping\Domain\Repository\BeekeeperRepository $beekeeperRepository
-     */
     public function __construct(
         private BeekeeperRepository $beekeeperRepository
     )
     {
     }
 
-    /**
-     * @param AddBeekeeperRequest $addBeekeeperRequest
-     * @param AddBeeKeeperPresenter $addBeeKeeperPresenter
-     * @return void
-     */
     public function execute(
         AddBeekeeperRequest   $addBeekeeperRequest,
         AddBeeKeeperPresenter $addBeeKeeperPresenter

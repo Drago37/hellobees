@@ -8,10 +8,6 @@ use HelloBees\Accounts\Domain\Entity\Credit;
 use HelloBees\SharedKernel\Domain\Collection\Collection;
 
 /**
- * Class
- *
- * @class ResourceCollection
- * @package HelloBees\Domain\BeeKeeping\Collection
  * @extends \HelloBees\SharedKernel\Domain\Collection\Collection<Resource>
  */
 class ResourceCollection extends \HelloBees\SharedKernel\Domain\Collection\Collection

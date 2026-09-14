@@ -14,30 +14,14 @@ use HelloBees\SharedKernel\Domain\UseCase\ResponseError;
 use HelloBees\SharedKernel\Domain\ValueObject\DateTime\DateTime;
 use HelloBees\SharedKernel\Domain\ValueObject\Identity\Uuid;
 
-/**
- * Class
- *
- * @class AddTraceComment
- * @package HelloBees\Domain\Trace\UseCase\AddTraceComment
- */
 final readonly class AddTraceComment
 {
-    /**
-     * AddTraceComment constructor
-     *
-     * @param \HelloBees\History\Domain\Repository\TraceRepository $traceRepository
-     */
     public function __construct(
         private TraceRepository $traceRepository
     )
     {
     }
 
-    /**
-     * @param AddTraceCommentRequest $request
-     * @param AddTraceCommentPresenter $presenter
-     * @return void
-     */
     public function execute(AddTraceCommentRequest $request, AddTraceCommentPresenter $presenter): void
     {
         $response = new AddTraceCommentResponse();
@@ -67,10 +51,6 @@ final readonly class AddTraceComment
         $presenter->present($response);
     }
 
-    /**
-     * @param AddTraceCommentRequest $request
-     * @return bool
-     */
     private function validate(AddTraceCommentRequest $request): bool
     {
         return !empty($request->getComment());

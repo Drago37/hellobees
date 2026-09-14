@@ -8,58 +8,34 @@ use HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException;
 use HelloBees\SharedKernel\Domain\ValueObject\Identity\Username;
 use PHPUnit\Framework\TestCase;
 
-/**
- * Class
- *
- * @class   UsernameTest
- * @package HelloBeesTest\Domain\ValueObject\Map
- */
 class UsernameTest extends TestCase
 {
 
-    /**
-     * @return void
-     */
     public function testUsernameIsCorrect(): void {
         $username = new Username("john", "doe");
         self::assertEquals("john doe", $username);
     }
 
-    /**
-     * @return void
-     */
     public function testUsernameWithFirstnameIsIncorrect(): void {
         $this->expectException(InvalidValueObjectException::class);
         $username = new Username("", "doe");
     }
 
-    /**
-     * @return void
-     */
     public function testUsernameWithLastnameIsIncorrect(): void {
         $this->expectException(InvalidValueObjectException::class);
         $username = new \HelloBees\SharedKernel\Domain\ValueObject\Identity\Username("john", "");
     }
 
-    /**
-     * @return void
-     */
     public function testGetFirstName(): void {
         $username = new Username("john", "doe");
         self::assertEquals("john", $username->getFirstName());
     }
 
-    /**
-     * @return void
-     */
     public function testGetLastName(): void {
         $username = new Username("john", "doe");
         self::assertEquals("doe", $username->getLastName());
     }
 
-    /**
-     * @return void
-     */
     public function testGetFullName(): void {
         $username = new \HelloBees\SharedKernel\Domain\ValueObject\Identity\Username("john", "doe");
         self::assertEquals("john doe", $username->getFullName());
@@ -67,7 +43,6 @@ class UsernameTest extends TestCase
 
     /**
      * @throws \HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException
-     *@return void
      */
     public function testEqualsIsEqual(): void {
         $username1 = new Username("john", "doe");
@@ -76,7 +51,6 @@ class UsernameTest extends TestCase
     }
 
     /**
-     * @return void
      * @throws InvalidValueObjectException
      */
     public function testEqualsIsNotEqual(): void {
@@ -86,7 +60,6 @@ class UsernameTest extends TestCase
     }
 
     /**
-     * @return void
      * @throws InvalidValueObjectException
      */
     public function testEqualsWithIncorrectParamType(): void
@@ -98,7 +71,6 @@ class UsernameTest extends TestCase
     }
 
     /**
-     * @return void
      * @throws InvalidValueObjectException
      */
     public function testEqualsWithIncorrectValueObjectParamType(): void
@@ -109,9 +81,6 @@ class UsernameTest extends TestCase
         $username->equals($phonenumber);
     }
 
-    /**
-     * @return void
-     */
     public function testMagicToString(): void
     {
         $username = new Username("john", "doe");

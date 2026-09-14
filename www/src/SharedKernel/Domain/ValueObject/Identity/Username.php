@@ -7,21 +7,10 @@ namespace HelloBees\SharedKernel\Domain\ValueObject\Identity;
 use HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException;
 use HelloBees\SharedKernel\Domain\ValueObject\ValueObjectInterface;
 
-/**
- * Class
- *
- * @class Username
- * @package HelloBees\Domain\SharedKernel\ValueObject\Identity
- */
 final readonly class Username implements ValueObjectInterface
 {
 
     /**
-     * Username constructor
-     *
-     * @param string $firstName
-     * @param string $lastName
-     *
      * @throws \HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException
      */
     public function __construct(private string $firstName, private string $lastName)
@@ -33,41 +22,27 @@ final readonly class Username implements ValueObjectInterface
         }
     }
 
-    /**
-     * @return string
-     */
     public function getFirstName(): string
     {
         return $this->firstName;
     }
 
-    /**
-     * @return string
-     */
     public function getLastName(): string
     {
         return $this->lastName;
     }
 
-    /**
-     * @return string
-     */
     public function getFullName(): string
     {
         return $this->firstName . ' ' . $this->lastName;
     }
 
-    /**
-     * @return string
-     */
     public function __toString(): string
     {
         return $this->getFullName();
     }
 
     /**
-     * @param Username $object
-     * @return bool
      * @throws InvalidValueObjectException
      */
     public function equals(ValueObjectInterface $object): bool

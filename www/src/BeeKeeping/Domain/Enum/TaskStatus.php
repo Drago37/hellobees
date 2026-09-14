@@ -4,12 +4,6 @@ declare(strict_types=1);
 
 namespace HelloBees\BeeKeeping\Domain\Enum;
 
-/**
- * Enum
- *
- * @class TaskStatus
- * @package HelloBees\Domain\BeeKeeping\Enum
- */
 enum TaskStatus: string
 {
     case Todo = 'to_do';

@@ -10,28 +10,12 @@ use HelloBees\SharedKernel\Domain\Exception\RepositoryException;
 use HelloBees\SharedKernel\Domain\UseCase\ResponseError;
 use HelloBees\SharedKernel\Domain\ValueObject\Identity\Uuid;
 
-/**
- * Class
- *
- * @class ShowTrace
- * @package HelloBees\Domain\Trace\UseCase\ShowTrace
- */
 final readonly class ShowTrace
 {
-    /**
-     * ShowTrace constructor
-     *
-     * @param \HelloBees\History\Domain\Repository\TraceRepository $traceRepository
-     */
     public function __construct(private TraceRepository $traceRepository)
     {
     }
 
-    /**
-     * @param ShowTraceRequest $request
-     * @param ShowTracePresenter $presenter
-     * @return void
-     */
     public function execute(ShowTraceRequest $request, ShowTracePresenter $presenter): void
     {
         $response = new ShowTraceResponse();
@@ -52,10 +36,6 @@ final readonly class ShowTrace
         $presenter->present($response);
     }
 
-    /**
-     * @param ShowTraceRequest $request
-     * @return bool
-     */
     private function validateRequest(ShowTraceRequest $request): bool
     {
         return !empty($request->getTraceId());

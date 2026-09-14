@@ -7,18 +7,11 @@ namespace HelloBees\SharedKernel\Domain\ValueObject\Identity;
 use HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException;
 use HelloBees\SharedKernel\Domain\ValueObject\LiteralString;
 
-/**
- * Class
- *
- * @class PhoneNumber
- * @package HelloBees\Domain\SharedKernel\ValueObject\Identity
- */
 final readonly class PhoneNumber extends LiteralString
 {
     public const PATTERN_NUMBER = "/^[0-9]{10}$/";
 
     /**
-     * @param string $value
      * @throws InvalidValueObjectException
      */
     public function __construct(string $value)

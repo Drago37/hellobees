@@ -9,27 +9,12 @@ use HelloBees\SharedKernel\Domain\Exception\CollectionException;
 use HelloBees\SharedKernel\Domain\Exception\RepositoryException;
 use HelloBees\SharedKernel\Domain\UseCase\ResponseError;
 
-/**
- * Class
- *
- * @class ShowCustomers
- * @package HelloBees\Domain\Selling\UseCase\ShowCustomers
- */
 final readonly class ShowCustomers
 {
-    /**
-     * ShowCustomers constructor
-     *
-     * @param CustomerRepository $customerRepository
-     */
     public function __construct(private CustomerRepository $customerRepository)
     {
     }
 
-    /**
-     * @param ShowCustomersPresenter $presenter
-     * @return void
-     */
     public function execute(ShowCustomersPresenter $presenter): void
     {
         $response = new ShowCustomersResponse();

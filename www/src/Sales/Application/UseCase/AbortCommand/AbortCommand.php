@@ -9,28 +9,12 @@ use HelloBees\Sales\Domain\Repository\CommandRepository;
 use HelloBees\SharedKernel\Domain\Exception\RepositoryException;
 use HelloBees\SharedKernel\Domain\UseCase\ResponseError;
 
-/**
- * Class
- *
- * @class AbortCommand
- * @package HelloBees\Domain\Selling\UseCase\AbortCommand
- */
 final readonly class AbortCommand
 {
-    /**
-     * AbortCommand constructor
-     *
-     * @param CommandRepository $commandRepository
-     */
     public function __construct(private CommandRepository $commandRepository)
     {
     }
 
-    /**
-     * @param Command $command
-     * @param AbortCommandPresenter $presenter
-     * @return void
-     */
     public function execute(Command $command, AbortCommandPresenter $presenter): void
     {
         $response = new AbortCommandResponse();

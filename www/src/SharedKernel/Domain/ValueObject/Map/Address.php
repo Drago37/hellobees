@@ -6,24 +6,9 @@ use HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException;
 use HelloBees\SharedKernel\Domain\ValueObject\LiteralString;
 use HelloBees\SharedKernel\Domain\ValueObject\ValueObjectInterface;
 
-/**
- * Class
- *
- * @class Address
- * @package HelloBees\Domain\SharedKernel\ValueObject\Map
- */
 final readonly class Address implements ValueObjectInterface
 {
 
-    /**
-     * Address constructor
-     *
-     * @param LiteralString $street
-     * @param LiteralString $postalCode
-     * @param LiteralString $city
-     * @param LiteralString|null $region
-     * @param \HelloBees\SharedKernel\Domain\ValueObject\LiteralString|null $country
-     */
     public function __construct(
         private LiteralString $street,
         private LiteralString $postalCode,
@@ -34,9 +19,6 @@ final readonly class Address implements ValueObjectInterface
     {
     }
 
-    /**
-     * @return string
-     */
     public function __toString(): string
     {
         $address = "$this->street $this->postalCode $this->city";
@@ -50,10 +32,7 @@ final readonly class Address implements ValueObjectInterface
     }
 
     /**
-     * @param Address $object
-     *
      * @throws \HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException
-     *@return bool
      */
     public function equals(ValueObjectInterface $object): bool
     {
@@ -69,41 +48,26 @@ final readonly class Address implements ValueObjectInterface
             && ($this->country === $object->getCountry());
     }
 
-    /**
-     * @return LiteralString
-     */
     public function getStreet(): LiteralString
     {
         return $this->street;
     }
 
-    /**
-     * @return LiteralString
-     */
     public function getPostalCode(): LiteralString
     {
         return $this->postalCode;
     }
 
-    /**
-     * @return LiteralString
-     */
     public function getCity(): LiteralString
     {
         return $this->city;
     }
 
-    /**
-     * @return LiteralString
-     */
     public function getRegion(): LiteralString
     {
         return $this->region;
     }
 
-    /**
-     * @return LiteralString
-     */
     public function getCountry(): LiteralString
     {
         return $this->country;

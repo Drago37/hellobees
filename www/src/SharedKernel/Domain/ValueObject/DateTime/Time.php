@@ -10,10 +10,6 @@ use HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException;
 use HelloBees\SharedKernel\Domain\ValueObject\ValueObjectInterface;
 
 /**
- * Class
- *
- * @class   Date
- * @package HelloBees\Domain\SharedKernel\ValueObject\DateTime
  * @phpstan-consistent-constructor
  */
 final readonly class Time implements ValueObjectInterface
@@ -22,12 +18,6 @@ final readonly class Time implements ValueObjectInterface
     public const FORMAT_HOURS_MINUTES = 'H:i';
 
     /**
-     * Time constructor
-     *
-     * @param int $hour
-     * @param int $minute
-     * @param int $second
-     *
      * @throws InvalidValueObjectException
      */
     public function __construct(private int $hour, private int $minute, private int $second)
@@ -38,10 +28,7 @@ final readonly class Time implements ValueObjectInterface
     }
 
     /**
-     * @param DateTime $dateTime
-     *
      * @throws InvalidValueObjectException
-     * @return Time
      */
     public static function createFromDateTime(DateTime $dateTime): Time
     {
@@ -53,11 +40,7 @@ final readonly class Time implements ValueObjectInterface
     }
 
     /**
-     * @param string $time
-     * @param string $format
-     *
      * @throws InvalidValueObjectException
-     *@return Time
      */
     public static function createFromString(string $time, string $format = self::FORMAT_HOURS_MINUTES_SECONDS): Time
     {
@@ -69,10 +52,7 @@ final readonly class Time implements ValueObjectInterface
     }
 
     /**
-     * @param int $timestamp
-     *
      * @throws InvalidValueObjectException
-     *@return Time
      */
     public static function createFromTimestamp(int $timestamp): Time
     {
@@ -82,8 +62,6 @@ final readonly class Time implements ValueObjectInterface
     }
 
     /**
-     * @param DateInterval $dateInterval
-     * @return Time
      * @throws InvalidValueObjectException
      */
     public static function createFromDateInterval(DateInterval $dateInterval): Time
@@ -97,7 +75,6 @@ final readonly class Time implements ValueObjectInterface
 
     /**
      * @throws InvalidValueObjectException
-     *@return Time
      */
     public static function now(): Time
     {
@@ -106,10 +83,7 @@ final readonly class Time implements ValueObjectInterface
     }
 
     /**
-     * @param ValueObjectInterface $time
-     *
      * @throws InvalidValueObjectException
-     * @return bool
      */
     public function equals(ValueObjectInterface $time): bool
     {
@@ -123,16 +97,12 @@ final readonly class Time implements ValueObjectInterface
 
     /**
      * @throws InvalidValueObjectException
-     *@return Time
      */
     public static function zero(): Time
     {
         return self::createFromString('00:00:00');
     }
 
-    /**
-     * @return \HelloBees\SharedKernel\Domain\ValueObject\DateTime\DateTime
-     */
     public function toNativeDateTime(): DateTime
     {
         $time = new DateTime('now');
@@ -141,50 +111,32 @@ final readonly class Time implements ValueObjectInterface
         return $time;
     }
 
-    /**
-     * @param string $format
-     * @return string
-     */
     public function toString(string $format = self::FORMAT_HOURS_MINUTES_SECONDS): string
     {
         return $this->toNativeDateTime()->format($format);
     }
 
-    /**
-     * @return string
-     */
     public function __toString(): string
     {
         return $this->toNativeDateTime()->format(self::FORMAT_HOURS_MINUTES_SECONDS);
     }
 
-    /**
-     * @return int
-     */
     public function getHour(): int
     {
         return $this->hour;
     }
 
-    /**
-     * @return int
-     */
     public function getMinute(): int
     {
         return $this->minute;
     }
 
-    /**
-     * @return int
-     */
     public function getSecond(): int
     {
         return $this->second;
     }
 
     /**
-     * @param int $hour
-     * @return void
      * @throws InvalidValueObjectException
      */
     protected function verifyHour(int $hour): void
@@ -199,10 +151,7 @@ final readonly class Time implements ValueObjectInterface
     }
 
     /**
-     * @param int $minute
-     *
      * @throws InvalidValueObjectException
-     *@return void
      */
     protected function verifyMinute(int $minute): void
     {
@@ -218,8 +167,6 @@ final readonly class Time implements ValueObjectInterface
     }
 
     /**
-     * @param int $second
-     * @return void
      * @throws InvalidValueObjectException
      */
     protected function verifySecond(int $second): void

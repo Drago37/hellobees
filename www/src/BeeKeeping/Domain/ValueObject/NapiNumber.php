@@ -7,20 +7,12 @@ namespace HelloBees\BeeKeeping\Domain\ValueObject;
 use HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException;
 
 /**
- * Class
- *
- * @class NapiNumber
- * @package HelloBees\Domain\BeeKeeping\ValueObject
- * @description NAPI format 123456 or 12345678 or A1234567
+ * NAPI format 123456 or 12345678 or A1234567
  */
 final readonly class NapiNumber extends \HelloBees\SharedKernel\Domain\ValueObject\LiteralString
 {
 
     /**
-     * NapiNumber constructor
-     *
-     * @param string $numeroNapi
-     *
      * @throws \HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException
      */
     public function __construct(private string $numeroNapi)

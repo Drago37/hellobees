@@ -8,9 +8,6 @@ use HelloBees\Production\Domain\Entity\Harvest;
 use HelloBees\SharedKernel\Domain\Collection\Collection;
 
 /**
- * Class
- * @class HarvestCollection
- * @package HelloBees\Domain\BeeKeeping\Collection
  * @extends \HelloBees\SharedKernel\Domain\Collection\Collection<\HelloBees\Production\Domain\Entity\Harvest>
  */
 class HarvestCollection extends \HelloBees\SharedKernel\Domain\Collection\Collection

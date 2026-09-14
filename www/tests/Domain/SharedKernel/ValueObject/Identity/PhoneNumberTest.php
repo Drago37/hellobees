@@ -8,18 +8,11 @@ use HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException;
 use HelloBees\SharedKernel\Domain\ValueObject\Identity\PhoneNumber;
 use PHPUnit\Framework\TestCase;
 
-/**
- * Class
- *
- * @class   PhoneNumberTest
- * @package HelloBeesTest\Domain\ValueObject\Map
- */
 class PhoneNumberTest extends TestCase
 {
 
     /**
      * @throws \HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException
-     *@return void
      */
     public function testPhoneNumberIsCorrect(): void {
         $string = "0632333435";
@@ -28,7 +21,6 @@ class PhoneNumberTest extends TestCase
     }
 
     /**
-     * @return void
      * @throws InvalidValueObjectException
      */
     public function testPhoneNumberIsIncorrect(): void {
@@ -37,27 +29,18 @@ class PhoneNumberTest extends TestCase
         $phoneNumber = new \HelloBees\SharedKernel\Domain\ValueObject\Identity\PhoneNumber($string);
     }
 
-    /**
-     * @return void
-     */
     public function testCreateFromStringPhoneNumberIsCorrect(): void {
         $string = "0632333435";
         $phoneNumber = \HelloBees\SharedKernel\Domain\ValueObject\Identity\PhoneNumber::createFromString($string);
         self::assertEquals($string, $phoneNumber->getValue());
     }
 
-    /**
-     * @return void
-     */
     public function testCreateFromStringPhoneNumberIsIncorrect(): void {
         $this->expectException(InvalidValueObjectException::class);
         $string = "06 32 33 34";
         $phoneNumber = PhoneNumber::createFromString($string);
     }
 
-    /**
-     * @return void
-     */
     public function testGetValue(): void {
         $string = "0632333435";
         $phoneNumber = PhoneNumber::createFromString($string);
@@ -66,7 +49,6 @@ class PhoneNumberTest extends TestCase
 
     /**
      * @throws \HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException
-     *@return void
      */
     public function testEqualsIsEqual(): void {
         $phoneNumber1 = \HelloBees\SharedKernel\Domain\ValueObject\Identity\PhoneNumber::createFromString("0632333435");
@@ -76,7 +58,6 @@ class PhoneNumberTest extends TestCase
 
     /**
      * @throws \HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException
-     *@return void
      */
     public function testEqualsIsNotEqual(): void {
         $phoneNumber1 = PhoneNumber::createFromString("0632333435");
@@ -86,7 +67,6 @@ class PhoneNumberTest extends TestCase
 
     /**
      * @throws \HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException
-     *@return void
      */
     public function testEqualsWithIncorrectParamType(): void
     {
@@ -98,7 +78,6 @@ class PhoneNumberTest extends TestCase
 
     /**
      * @throws \HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException
-     *@return void
      */
     public function testEqualsWithIncorrectValueObjectParamType(): void
     {
@@ -108,9 +87,6 @@ class PhoneNumberTest extends TestCase
         $phoneNumber->equals($username);
     }
 
-    /**
-     * @return void
-     */
     public function testMagicToString(): void
     {
         $phoneNumber = \HelloBees\SharedKernel\Domain\ValueObject\Identity\PhoneNumber::createFromString("0632333435");

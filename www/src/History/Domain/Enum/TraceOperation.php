@@ -4,12 +4,6 @@ declare(strict_types=1);
 
 namespace HelloBees\History\Domain\Enum;
 
-/**
- * Enum
- *
- * @class TraceOperation
- * @package HelloBees\Domain\Trace\Enum
- */
 enum TraceOperation: string
 {
     case Create = 'create';

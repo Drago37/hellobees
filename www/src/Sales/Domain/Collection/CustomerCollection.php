@@ -8,9 +8,6 @@ use HelloBees\Sales\Domain\Entity\Customer;
 use HelloBees\SharedKernel\Domain\Collection\Collection;
 
 /**
- * Class
- * @class CustomerCollection
- * @package HelloBees\Domain\BeeKeeping\Collection
  * @extends Collection<\HelloBees\Sales\Domain\Entity\Customer>
  */
 class CustomerCollection extends \HelloBees\SharedKernel\Domain\Collection\Collection

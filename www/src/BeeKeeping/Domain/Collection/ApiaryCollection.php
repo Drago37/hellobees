@@ -8,9 +8,6 @@ use HelloBees\BeeKeeping\Domain\Aggregate\Apiary;
 use HelloBees\SharedKernel\Domain\Collection\Collection;
 
 /**
- * Class
- * @class ApiaryCollection
- * @package HelloBees\Domain\BeeKeeping\Collection
  * @extends \HelloBees\SharedKernel\Domain\Collection\Collection<Apiary>
  */
 class ApiaryCollection extends Collection

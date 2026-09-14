@@ -9,10 +9,6 @@ use HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException;
 use HelloBees\SharedKernel\Domain\ValueObject\ValueObjectInterface;
 
 /**
- * Class
- *
- * @class   Date
- * @package HelloBees\Domain\SharedKernel\ValueObject\DateTime
  * @phpstan-consistent-constructor
  */
 final readonly class Date implements ValueObjectInterface
@@ -23,12 +19,6 @@ final readonly class Date implements ValueObjectInterface
     public const FORMAT_TIMESTAMP = 'U';
 
     /**
-     * Date constructor
-     *
-     * @param int $year
-     * @param int $month
-     * @param int $day
-     *
      * @throws InvalidValueObjectException
      */
     public function __construct(
@@ -41,10 +31,7 @@ final readonly class Date implements ValueObjectInterface
     }
 
     /**
-     * @param DateTime $dateTime
-     *
      * @throws InvalidValueObjectException
-     * @return Date
      */
     public static function createFromDateTime(DateTime $dateTime): Date
     {
@@ -56,10 +43,7 @@ final readonly class Date implements ValueObjectInterface
     }
 
     /**
-     * @param int $timestamp
-     *
      * @throws InvalidValueObjectException
-     *@return Date
      */
     public static function createFromTimestamp(int $timestamp): Date
     {
@@ -69,11 +53,7 @@ final readonly class Date implements ValueObjectInterface
     }
 
     /**
-     * @param string $value
-     * @param string $format
-     *
      * @throws InvalidValueObjectException
-     *@return Date
      */
     public static function createFromString(string $value, string $format = self::FORMAT_SQL): Date
     {
@@ -82,7 +62,6 @@ final readonly class Date implements ValueObjectInterface
 
     /**
      * @throws InvalidValueObjectException
-     *@return Date
      */
     public static function now(): Date
     {
@@ -90,20 +69,13 @@ final readonly class Date implements ValueObjectInterface
         return self::createFromDateTime($dateTimeNow);
     }
 
-    /**
-     * @param string $format
-     * @return string
-     */
     public function toString(string $format = self::FORMAT_SQL): string
     {
         return $this->toNativeDateTime()->format($format);
     }
 
     /**
-     * @param ValueObjectInterface $date
-     *
      * @throws InvalidValueObjectException
-     * @return bool
      */
     public function equals(ValueObjectInterface $date): bool
     {
@@ -115,9 +87,6 @@ final readonly class Date implements ValueObjectInterface
         return $this->toString() === $date->toString();
     }
 
-    /**
-     * @return \HelloBees\SharedKernel\Domain\ValueObject\DateTime\DateTime
-     */
     public function toNativeDateTime(): DateTime
     {
         $date = new DateTime();
@@ -127,9 +96,6 @@ final readonly class Date implements ValueObjectInterface
         return $date;
     }
 
-    /**
-     * @return int
-     */
     public function toTimestamp(): int
     {
         $date = new DateTime();
@@ -139,44 +105,28 @@ final readonly class Date implements ValueObjectInterface
         return $date->getTimestamp();
     }
 
-    /**
-     * @return string
-     */
     public function __toString(): string
     {
         return $this->toNativeDateTime()->format(self::FORMAT_SQL);
     }
 
-    /**
-     * @return int
-     */
     public function getYear(): int
     {
         return $this->year;
     }
 
-    /**
-     * @return int
-     */
     public function getMonth(): int
     {
         return $this->month;
     }
 
-    /**
-     * @return int
-     */
     public function getDay(): int
     {
         return $this->day;
     }
 
     /**
-     * @param string $value
-     * @param string $format
-     *
      * @throws InvalidValueObjectException
-     * @return DateTime
      */
     protected static function getDateTimeFromValue(string $value, string $format = self::FORMAT_SQL): DateTime
     {

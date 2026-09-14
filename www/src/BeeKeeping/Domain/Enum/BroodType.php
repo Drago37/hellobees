@@ -2,12 +2,6 @@
 
 namespace HelloBees\BeeKeeping\Domain\Enum;
 
-/**
- * Enum
- *
- * @class BroodType
- * @package HelloBees\Domain\BeeKeeping\Enum
- */
 enum BroodType: string
 {
     case Open = 'open';

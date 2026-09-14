@@ -10,17 +10,11 @@ use Ramsey\Uuid\Uuid as BaseUuid;
 use Ramsey\Uuid\Validator\GenericValidator;
 
 /**
- * Class
- *
- * @class   Uuid
- * @package HelloBees\Domain\SharedKernel\ValueObject\Identity
  * @phpstan-consistent-constructor
  */
 final readonly class Uuid extends LiteralString
 {
     /**
-     * @param string $value
-     *
      * @throws \HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException
      */
     public function __construct(string $value)
@@ -41,8 +35,8 @@ final readonly class Uuid extends LiteralString
 
     /**
      * Generate a new UNIQUE ID
+     *
      * @throws \HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException
-     *@return Uuid
      */
     public static function generate(): Uuid
     {

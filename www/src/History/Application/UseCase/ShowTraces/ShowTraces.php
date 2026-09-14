@@ -10,28 +10,12 @@ use HelloBees\SharedKernel\Domain\Exception\CollectionException;
 use HelloBees\SharedKernel\Domain\Exception\RepositoryException;
 use HelloBees\SharedKernel\Domain\UseCase\ResponseError;
 
-/**
- * Class
- *
- * @class ShowTraces
- * @package HelloBees\Domain\Trace\UseCase\ShowTraces
- */
 final readonly class ShowTraces
 {
-    /**
-     * ShowTraces constructor
-     *
-     * @param \HelloBees\History\Domain\Repository\TraceRepository $traceRepository
-     */
     public function __construct(private TraceRepository $traceRepository)
     {
     }
 
-    /**
-     * @param ShowTracesRequest $request
-     * @param ShowTracesPresenter $presenter
-     * @return void
-     */
     public function execute(ShowTracesRequest $request, ShowTracesPresenter $presenter): void
     {
         $response = new ShowTracesResponse();
@@ -64,10 +48,6 @@ final readonly class ShowTraces
         $presenter->present($response);
     }
 
-    /**
-     * @param ShowTracesRequest $request
-     * @return bool
-     */
     private function hasFilters(ShowTracesRequest $request): bool
     {
         return !empty($request->getByApiaryId()) || !empty($request->getByBeehiveId()) || !empty($request->getByBeeKeeperId());

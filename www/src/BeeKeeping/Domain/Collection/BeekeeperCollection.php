@@ -8,9 +8,6 @@ use HelloBees\BeeKeeping\Domain\Entity\BeeKeeper;
 use HelloBees\SharedKernel\Domain\Collection\Collection;
 
 /**
- * Class
- * @class BeekeeperCollection
- * @package HelloBees\Domain\BeeKeeping\Collection
  * @extends \HelloBees\SharedKernel\Domain\Collection\Collection<BeeKeeper>
  */
 class BeekeeperCollection extends \HelloBees\SharedKernel\Domain\Collection\Collection

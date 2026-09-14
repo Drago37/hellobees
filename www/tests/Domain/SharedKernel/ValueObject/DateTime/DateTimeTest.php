@@ -11,17 +11,10 @@ use HelloBees\SharedKernel\Domain\ValueObject\DateTime\Time;
 use HelloBees\SharedKernel\Domain\ValueObject\LiteralString;
 use PHPUnit\Framework\TestCase;
 
-/**
- * Class
- *
- * @class   DateTimeTest
- * @package HelloBeesTest\Domain\ValueObject\DateTime
- */
 class DateTimeTest extends TestCase
 {
 
     /**
-     * @return void
      * @throws InvalidValueObjectException
      */
     public function testDateTimeIsCorrectWithTime(): void
@@ -34,7 +27,6 @@ class DateTimeTest extends TestCase
 
     /**
      * @throws \HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException
-     *@return void
      */
     public function testDateTimeIsCorrectWithoutTime(): void
     {
@@ -45,7 +37,6 @@ class DateTimeTest extends TestCase
 
     /**
      * @throws \HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException
-     *@return void
      */
     public function testCreateFromDateTime(): void
     {
@@ -55,7 +46,6 @@ class DateTimeTest extends TestCase
     }
 
     /**
-     * @return void
      * @throws InvalidValueObjectException
      */
     public function testCreateFromTimestamp(): void
@@ -66,7 +56,6 @@ class DateTimeTest extends TestCase
     }
 
     /**
-     * @return void
      * @throws InvalidValueObjectException
      */
     public function testNow(): void
@@ -78,7 +67,6 @@ class DateTimeTest extends TestCase
 
     /**
      * @throws \HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException
-     *@return void
      */
     public function testToNativeDatetime(): void
     {
@@ -90,7 +78,6 @@ class DateTimeTest extends TestCase
     }
 
     /**
-     * @return void
      * @throws InvalidValueObjectException
      */
     public function testToTimestamp(): void
@@ -103,7 +90,6 @@ class DateTimeTest extends TestCase
     }
 
     /**
-     * @return void
      * @throws InvalidValueObjectException
      */
     public function testToStringWithDefaultSqlFormat(): void
@@ -116,7 +102,6 @@ class DateTimeTest extends TestCase
 
     /**
      * @throws \HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException
-     *@return void
      */
     public function testToStringWithFrenchFormat(): void
     {
@@ -128,7 +113,6 @@ class DateTimeTest extends TestCase
 
     /**
      * @throws \HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException
-     *@return void
      */
     public function testEqualsIsCorrect(): void
     {
@@ -142,7 +126,6 @@ class DateTimeTest extends TestCase
     }
 
     /**
-     * @return void
      * @throws InvalidValueObjectException
      */
     public function testEqualsIsIncorrect(): void
@@ -157,7 +140,6 @@ class DateTimeTest extends TestCase
     }
 
     /**
-     * @return void
      * @throws InvalidValueObjectException
      */
     public function testEqualsWithIncorrectParamType(): void
@@ -171,7 +153,6 @@ class DateTimeTest extends TestCase
     }
 
     /**
-     * @return void
      * @throws InvalidValueObjectException
      */
     public function testEqualsWithIncorrectValueObjectParamType(): void
@@ -185,7 +166,6 @@ class DateTimeTest extends TestCase
     }
 
     /**
-     * @return void
      * @throws InvalidValueObjectException
      */
     public function testMagicToString(): void
@@ -198,7 +178,6 @@ class DateTimeTest extends TestCase
 
     /**
      * @throws \HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException
-     *@return void
      */
     public function testGetDate(): void
     {
@@ -210,7 +189,6 @@ class DateTimeTest extends TestCase
 
     /**
      * @throws \HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException
-     *@return void
      */
     public function testGetTime(): void
     {

@@ -4,12 +4,6 @@ declare(strict_types=1);
 
 namespace HelloBees\History\Domain\Enum;
 
-/**
- * Enum
- *
- * @class TraceAction
- * @package HelloBees\Domain\Trace\Enum
- */
 enum TraceAction: string
 {
     case Form = 'form';

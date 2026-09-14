@@ -5,23 +5,12 @@ namespace HelloBees\SharedKernel\Domain\ValueObject\DateTime;
 use HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException;
 use HelloBees\SharedKernel\Domain\ValueObject\ValueObjectInterface;
 
-/**
- * Class
- *
- * @class DateTime
- * @package HelloBees\Domain\SharedKernel\ValueObject\DateTime
- */
 final class DateTime implements ValueObjectInterface
 {
     public const FORMAT_SQL = 'Y-m-d H:i:s';
     public const FORMAT_FR = 'd/m/Y H:i:s';
 
     /**
-     * DateTime constructor
-     *
-     * @param Date $date
-     * @param Time|null $time
-     *
      * @throws InvalidValueObjectException
      */
     public function __construct(
@@ -36,8 +25,6 @@ final class DateTime implements ValueObjectInterface
     }
 
     /**
-     * @param \DateTime $dateTime
-     * @return DateTime
      * @throws InvalidValueObjectException
      */
     public static function createFromDateTime(\DateTime $dateTime): DateTime
@@ -49,10 +36,7 @@ final class DateTime implements ValueObjectInterface
     }
 
     /**
-     * @param int $timestamp
-     *
      * @throws InvalidValueObjectException
-     *@return DateTime
      */
     public static function createFromTimestamp(int $timestamp): DateTime{
         $date = Date::createFromTimestamp($timestamp);
@@ -63,25 +47,17 @@ final class DateTime implements ValueObjectInterface
 
     /**
      * @throws InvalidValueObjectException
-     *@return DateTime
      */
     public static function now(): DateTime
     {
         return new self(Date::now(), Time::now());
     }
 
-    /**
-     * @param string $format
-     * @return string
-     */
     public function toString(string $format = self::FORMAT_SQL): string
     {
         return $this->toNativeDateTime()->format($format);
     }
 
-    /**
-     * @return \DateTime
-     */
     public function toNativeDateTime(): \DateTime
     {
         $dateTime = new \DateTime();
@@ -91,9 +67,6 @@ final class DateTime implements ValueObjectInterface
         return $dateTime;
     }
 
-    /**
-     * @return int
-     */
     public function toTimestamp(): int
     {
         $dateTime = new \DateTime();
@@ -103,35 +76,23 @@ final class DateTime implements ValueObjectInterface
         return $dateTime->getTimestamp();
     }
 
-    /**
-     * @return Date
-     */
     public function getDate(): Date
     {
         return $this->date;
     }
 
-    /**
-     * @return Time|null
-     */
     public function getTime(): ?Time
     {
         return $this->time;
     }
 
-    /**
-     * @return string
-     */
     public function __toString(): string
     {
         return $this->date->toString(Date::FORMAT_STRING_FR) . " à " . $this->time->toString();
     }
 
     /**
-     * @param ValueObjectInterface $dateTime
-     *
      * @throws InvalidValueObjectException
-     * @return bool
      */
     public function equals(ValueObjectInterface $dateTime): bool
     {

@@ -6,12 +6,6 @@ namespace HelloBees\Production\Application\UseCase\UpdateHarvest;
 
 use HelloBees\SharedKernel\Domain\UseCase\UseCaseResponse;
 
-/**
- * Class
- *
- * @class UpdateHarvestResponse
- * @package HelloBees\Domain\Production\UseCase\UpdateHarvest
- */
 class UpdateHarvestResponse extends UseCaseResponse
 {
 

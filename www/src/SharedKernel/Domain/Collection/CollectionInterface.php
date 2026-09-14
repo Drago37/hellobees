@@ -10,10 +10,6 @@ use JsonSerializable;
 use Traversable;
 
 /**
- * Interface
- *
- * @class    CollectionInterface
- * @package  HelloBees\Domain\SharedKernel\Collection
  * @template TItem of object
  * @extends IteratorAggregate<TItem>
  */
@@ -35,20 +31,14 @@ interface CollectionInterface extends IteratorAggregate, JsonSerializable
 
     /**
      * @param TItem $item
-     * @return bool
      */
     public function contains($item): bool;
 
     /**
-     * @param int|string $key
      * @return TItem
      */
     public function get(int|string $key);
 
-    /**
-     * @param int|string $key
-     * @return bool
-     */
     public function has(int|string $key): bool;
 
     /**
@@ -58,20 +48,14 @@ interface CollectionInterface extends IteratorAggregate, JsonSerializable
      */
     public function keys(): array;
 
-    /**
-     * @return bool
-     */
     public function isEmpty(): bool;
 
     /**
      * Return the the number of items of collection
-     *
-     * @return int
      */
     public function length(): int;
 
     /**
-     * @param callable $p
      * @return CollectionInterface<TItem>
      */
     public function filter(callable $p): CollectionInterface;
@@ -85,23 +69,17 @@ interface CollectionInterface extends IteratorAggregate, JsonSerializable
     public function mergeWith(CollectionInterface ...$collections): CollectionInterface;
 
     /**
-     * @param int|string $key
-     * @param TItem      $item
+     * @param TItem $item
      * @return CollectionInterface<TItem>
      */
     public function add(int|string $key, $item): CollectionInterface;
 
     /**
-     * @param int|string $key
-     * @param TItem      $item
+     * @param TItem $item
      * @return CollectionInterface<TItem>
      */
     public function put(int|string $key, $item): CollectionInterface;
 
-    /**
-     * @param int|string $key
-     * @return bool
-     */
     public function remove(int|string $key): bool;
 
     /**
@@ -111,9 +89,6 @@ interface CollectionInterface extends IteratorAggregate, JsonSerializable
      */
     public function values(): array;
 
-    /**
-     * @return string
-     */
     public function toJson(): string;
 
     /**

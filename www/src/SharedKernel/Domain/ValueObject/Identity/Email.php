@@ -7,17 +7,9 @@ namespace HelloBees\SharedKernel\Domain\ValueObject\Identity;
 use HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException;
 use HelloBees\SharedKernel\Domain\ValueObject\LiteralString;
 
-/**
- * Class
- *
- * @class   Email
- * @package HelloBees\SharedKernel\Domain\ValueObject\Identity
- */
 final readonly class Email extends LiteralString
 {
     /**
-     * @param string $value
-     *
      * @throws InvalidValueObjectException
      */
     public function __construct(string $value)
@@ -35,8 +27,6 @@ final readonly class Email extends LiteralString
 
     /**
      * Returns the local part of the email address.
-     *
-     * @return LiteralString
      */
     public function getLocalPart(): LiteralString
     {
@@ -46,8 +36,6 @@ final readonly class Email extends LiteralString
 
     /**
      * Returns the domain part of the email address.
-     *
-     * @return LiteralString
      */
     public function getDomainPart(): LiteralString
     {

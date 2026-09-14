@@ -4,12 +4,6 @@ declare(strict_types=1);
 
 namespace HelloBees\BeeKeeping\Domain\Enum;
 
-/**
- * Enum
- *
- * @class ApiaryEnvironment
- * @package HelloBees\Domain\BeeKeeping\Enum
- */
 enum ApiaryEnvironment: string
 {
     case Mountain = 'mountain';

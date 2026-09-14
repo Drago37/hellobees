@@ -2,12 +2,6 @@
 
 namespace HelloBees\SharedKernel\Domain\Enum;
 
-/**
- * Enum
- *
- * @class Priority
- * @package HelloBees\Domain\SharedKernel\Enum
- */
 enum Priority: int
 {
     case High = 0;

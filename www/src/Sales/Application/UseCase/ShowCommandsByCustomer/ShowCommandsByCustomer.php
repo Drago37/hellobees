@@ -10,28 +10,12 @@ use HelloBees\SharedKernel\Domain\Exception\CollectionException;
 use HelloBees\SharedKernel\Domain\Exception\RepositoryException;
 use HelloBees\SharedKernel\Domain\UseCase\ResponseError;
 
-/**
- * Class
- *
- * @class ShowCommandsByCustomer
- * @package HelloBees\Domain\Selling\UseCase\ShowCommandsByCustomer
- */
 final readonly class ShowCommandsByCustomer
 {
-    /**
-     * ShowCommandsByCustomer constructor
-     *
-     * @param \HelloBees\Sales\Domain\Repository\CommandRepository $commandRepository
-     */
     public function __construct(private CommandRepository $commandRepository)
     {
     }
 
-    /**
-     * @param Customer $customer
-     * @param ShowCommandsByCustomerPresenter $presenter
-     * @return void
-     */
     public function execute(Customer $customer, ShowCommandsByCustomerPresenter $presenter): void
     {
         $response = new ShowCommandsByCustomerResponse();

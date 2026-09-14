@@ -2,12 +2,6 @@
 
 namespace HelloBees\BeeKeeping\Domain\Enum;
 
-/**
- * Enum
- *
- * @class StockLevel
- * @package HelloBees\Domain\BeeKeeping\Enum
- */
 enum StockLevel: int
 {
     case High = 0;

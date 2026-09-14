@@ -2,12 +2,6 @@
 
 namespace HelloBees\SharedKernel\Domain\Enum;
 
-/**
- * Enum
- *
- * @class HoneyType
- * @package HelloBees\Domain\SharedKernel\Enum
- */
 enum HoneyType: string
 {
     case Sunflower = 'sunflower';

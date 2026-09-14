@@ -9,10 +9,6 @@ use HelloBees\SharedKernel\Domain\Exception\CollectionException;
 use Traversable;
 
 /**
- * Class
- *
- * @class      Collection
- * @package    HelloBees\Domain\SharedKernel\Collection
  * @template   TItem of object
  * @implements CollectionInterface<TItem>
  */
@@ -24,8 +20,6 @@ abstract class Collection implements CollectionInterface
     protected array $items;
 
     /**
-     * Collection constructor
-     *
      * @param TItem[] $items Object array to transform in collection.
      * @throws CollectionException
      */
@@ -49,7 +43,6 @@ abstract class Collection implements CollectionInterface
 
     /**
      * @param TItem $item
-     * @return bool
      */
     public function contains($item): bool
     {
@@ -57,7 +50,6 @@ abstract class Collection implements CollectionInterface
     }
 
     /**
-     * @param int|string $key
      * @return TItem
      * @throws CollectionException
      */
@@ -69,10 +61,6 @@ abstract class Collection implements CollectionInterface
         throw new CollectionException("Key $key not found in the collection");
     }
 
-    /**
-     * @param int|string $key
-     * @return bool
-     */
     public function has(int|string $key): bool
     {
         return isset($this->items[$key]);
@@ -86,24 +74,17 @@ abstract class Collection implements CollectionInterface
         return array_keys($this->items);
     }
 
-    /**
-     * @return bool
-     */
     public function isEmpty(): bool
     {
         return empty($this->items);
     }
 
-    /**
-     * @return int
-     */
     public function length(): int
     {
         return count($this->items);
     }
 
     /**
-     * @param callable $p
      * @return Collection<TItem>
      * @throws CollectionException
      */
@@ -150,7 +131,6 @@ abstract class Collection implements CollectionInterface
     /**
      * Add new item at the collection, if key exists then adding aborted
      *
-     * @param int|string $key
      * @param TItem $item
      * @return Collection<TItem>
      * @throws CollectionException
@@ -166,7 +146,6 @@ abstract class Collection implements CollectionInterface
     }
 
     /**
-     * @param int|string $key
      * @param TItem $item
      * @return Collection<TItem>
      * @throws CollectionException
@@ -178,10 +157,6 @@ abstract class Collection implements CollectionInterface
         return $this;
     }
 
-    /**
-     * @param int|string $key
-     * @return bool
-     */
     public function remove(int|string $key): bool
     {
         if ($this->has($key)) {
@@ -228,7 +203,6 @@ abstract class Collection implements CollectionInterface
     }
 
     /**
-     * @return string
      * @throws CollectionException
      */
     public function toJson(): string
@@ -245,7 +219,6 @@ abstract class Collection implements CollectionInterface
 
     /**
      * @param TItem $item
-     * @return void
      * @throws CollectionException
      */
     protected function verifyItem($item): void

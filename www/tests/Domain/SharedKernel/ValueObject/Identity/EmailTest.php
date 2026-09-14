@@ -9,17 +9,10 @@ use HelloBees\SharedKernel\Domain\ValueObject\Identity\Email;
 use HelloBees\SharedKernel\Domain\ValueObject\Identity\Username;
 use PHPUnit\Framework\TestCase;
 
-/**
- * Class
- *
- * @class   EmailTest
- * @package HelloBeesTest\Domain\ValueObject\Map
- */
 class EmailTest extends TestCase
 {
 
     /**
-     * @return void
      * @throws InvalidValueObjectException
      */
     public function testEmailIsCorrect(): void {
@@ -29,7 +22,6 @@ class EmailTest extends TestCase
     }
 
     /**
-     * @return void
      * @throws InvalidValueObjectException
      */
     public function testEmailIsIncorrect(): void {
@@ -38,27 +30,18 @@ class EmailTest extends TestCase
         $email = new Email($string);
     }
 
-    /**
-     * @return void
-     */
     public function testCreateFromStringEmailIsCorrect(): void {
         $string = "anthony.graule@gmail.com";
         $email = Email::createFromString($string);
         self::assertEquals($string, $email->getValue());
     }
 
-    /**
-     * @return void
-     */
     public function testCreateFromStringEmailIsIncorrect(): void {
         $this->expectException(InvalidValueObjectException::class);
         $string = "anthony.graule";
         $email = \HelloBees\SharedKernel\Domain\ValueObject\Identity\Email::createFromString($string);
     }
 
-    /**
-     * @return void
-     */
     public function testGetValue(): void {
         $string = "anthony.graule@gmail.com";
         $email = \HelloBees\SharedKernel\Domain\ValueObject\Identity\Email::createFromString($string);
@@ -66,7 +49,6 @@ class EmailTest extends TestCase
     }
 
     /**
-     * @return void
      * @throws InvalidValueObjectException
      */
     public function testEqualsIsEqual(): void {
@@ -76,7 +58,6 @@ class EmailTest extends TestCase
     }
 
     /**
-     * @return void
      * @throws InvalidValueObjectException
      */
     public function testEqualsIsNotEqual(): void {
@@ -86,7 +67,6 @@ class EmailTest extends TestCase
     }
 
     /**
-     * @return void
      * @throws InvalidValueObjectException
      */
     public function testEqualsWithIncorrectParamType(): void
@@ -98,7 +78,6 @@ class EmailTest extends TestCase
     }
 
     /**
-     * @return void
      * @throws InvalidValueObjectException
      */
     public function testEqualsWithIncorrectValueObjectParamType(): void
@@ -109,27 +88,18 @@ class EmailTest extends TestCase
         $email->equals($username);
     }
 
-    /**
-     * @return void
-     */
     public function testMagicToString(): void
     {
         $email = Email::createFromString("anthony.graule@gmail.com");
         self::assertEquals("anthony.graule@gmail.com", $email);
     }
 
-    /**
-     * @return void
-     */
     public function testGetLocalPart(): void
     {
         $email = Email::createFromString("anthony.graule@gmail.com");
         self::assertEquals("anthony.graule", $email->getLocalPart()->getValue());
     }
 
-    /**
-     * @return void
-     */
     public function testGetDomainPart(): void
     {
         $email = Email::createFromString("anthony.graule@gmail.com");

@@ -9,16 +9,9 @@ use HelloBees\SharedKernel\Domain\ValueObject\DateTime\Time;
 use HelloBees\SharedKernel\Domain\ValueObject\LiteralString;
 use PHPUnit\Framework\TestCase;
 
-/**
- * Class
- *
- * @class   TimeTest
- * @package HelloBeesTest\Domain\ValueObject\DateTime
- */
 class TimeTest extends TestCase
 {
     /**
-     * @return void
      * @throws InvalidValueObjectException
      */
     public function testTimeIsCorrect(): void
@@ -28,7 +21,6 @@ class TimeTest extends TestCase
     }
 
     /**
-     * @return void
      * @throws InvalidValueObjectException
      */
     public function testTimeWithIncorrectHour(): void
@@ -38,7 +30,6 @@ class TimeTest extends TestCase
     }
 
     /**
-     * @return void
      * @throws InvalidValueObjectException
      */
     public function testTimeWithIncorrectMinute(): void
@@ -48,7 +39,6 @@ class TimeTest extends TestCase
     }
 
     /**
-     * @return void
      * @throws InvalidValueObjectException
      */
     public function testTimeWithIncorrectSecond(): void
@@ -58,7 +48,6 @@ class TimeTest extends TestCase
     }
 
     /**
-     * @return void
      * @throws InvalidValueObjectException
      */
     public function testCreateFromDateTime(): void
@@ -69,7 +58,6 @@ class TimeTest extends TestCase
     }
 
     /**
-     * @return void
      * @throws InvalidValueObjectException
      */
     public function testCreateFromStringWithFullFormat(): void
@@ -79,7 +67,6 @@ class TimeTest extends TestCase
     }
 
     /**
-     * @return void
      * @throws InvalidValueObjectException
      */
     public function testCreateFromStringWithHourMinuteFormat(): void
@@ -89,7 +76,6 @@ class TimeTest extends TestCase
     }
 
     /**
-     * @return void
      * @throws InvalidValueObjectException
      */
     public function testCreateFromStringWithIncorrectTime(): void
@@ -99,7 +85,6 @@ class TimeTest extends TestCase
     }
 
     /**
-     * @return void
      * @throws InvalidValueObjectException
      */
     public function testCreateFromTimestamp(): void
@@ -110,7 +95,6 @@ class TimeTest extends TestCase
     }
 
     /**
-     * @return void
      * @throws InvalidValueObjectException
      */
     public function testCreateFromDateInterval(): void
@@ -122,7 +106,6 @@ class TimeTest extends TestCase
 
     /**
      * @throws \HelloBees\SharedKernel\Domain\Exception\InvalidValueObjectException
-     *@return void
      */
     public function testNow() : void {
         $time = new Time(5,10,15);
@@ -133,7 +116,6 @@ class TimeTest extends TestCase
     }
 
     /**
-     * @return void
      * @throws InvalidValueObjectException
      */
     public function testToStringWithDefaultFormat() : void {
@@ -145,7 +127,6 @@ class TimeTest extends TestCase
     }
 
     /**
-     * @return void
      * @throws InvalidValueObjectException
      */
     public function testToStringWithHourMinutesFormat() : void {
@@ -157,7 +138,6 @@ class TimeTest extends TestCase
     }
 
     /**
-     * @return void
      * @throws InvalidValueObjectException
      */
     public function testEqualsIsCorrect() : void {
@@ -167,7 +147,6 @@ class TimeTest extends TestCase
     }
 
     /**
-     * @return void
      * @throws InvalidValueObjectException
      */
     public function testEqualsIsIncorrect() : void {
@@ -177,7 +156,6 @@ class TimeTest extends TestCase
     }
 
     /**
-     * @return void
      * @throws InvalidValueObjectException
      */
     public function testEqualsWithIncorrectParamType() : void {
@@ -188,7 +166,6 @@ class TimeTest extends TestCase
     }
 
     /**
-     * @return void
      * @throws InvalidValueObjectException
      */
     public function testEqualsWithIncorrectValueObjectParamType() : void {
@@ -199,7 +176,6 @@ class TimeTest extends TestCase
     }
 
     /**
-     * @return void
      * @throws InvalidValueObjectException
      */
     public function testMagicToString() : void {
@@ -208,7 +184,6 @@ class TimeTest extends TestCase
     }
 
     /**
-     * @return void
      * @throws InvalidValueObjectException
      */
     public function testGetHour() : void {
@@ -217,7 +192,6 @@ class TimeTest extends TestCase
     }
 
     /**
-     * @return void
      * @throws InvalidValueObjectException
      */
     public function testGetMinute() : void {
@@ -226,7 +200,6 @@ class TimeTest extends TestCase
     }
 
     /**
-     * @return void
      * @throws InvalidValueObjectException
      */
     public function testGetSecond() : void {
@@ -235,7 +208,6 @@ class TimeTest extends TestCase
     }
 
     /**
-     * @return void
      * @throws InvalidValueObjectException
      */
     public function testZero() : void {

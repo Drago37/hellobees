@@ -9,28 +9,12 @@ use HelloBees\SharedKernel\Domain\Exception\RepositoryException;
 use HelloBees\SharedKernel\Domain\UseCase\ResponseError;
 use HelloBees\SharedKernel\Domain\ValueObject\Identity\Uuid;
 
-/**
- * Class
- *
- * @class ShowHarvest
- * @package HelloBees\Domain\Production\UseCase\ShowHarvest
- */
 final readonly class ShowHarvest
 {
-    /**
-     * ShowHarvest constructor
-     *
-     * @param HarvestRepository $harvestRepository
-     */
     public function __construct(private HarvestRepository $harvestRepository)
     {
     }
 
-    /**
-     * @param Uuid $harvestUuid
-     * @param ShowHarvestPresenter $presenter
-     * @return void
-     */
     public function execute(Uuid $harvestUuid, ShowHarvestPresenter $presenter): void
     {
         $response = new ShowHarvestResponse();

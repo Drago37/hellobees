@@ -9,61 +9,39 @@ use HelloBees\SharedKernel\Domain\ValueObject\DateTime\Date;
 use HelloBees\SharedKernel\Domain\ValueObject\LiteralString;
 use PHPUnit\Framework\TestCase;
 
-/**
- * Class
- *
- * @class   LiteralStringTest
- * @package HelloBeesTest\Domain\ValueObject
- */
 class LiteralStringTest extends TestCase
 {
 
-    /**
-     * @return void
-     */
     public function testLiteralStringIsCorrect(): void {
         $string = "foo";
         $literalString = new \HelloBees\SharedKernel\Domain\ValueObject\LiteralString($string);
         self::assertEquals($string, $literalString);
     }
 
-    /**
-     * @return void
-     */
     public function testCreateFromString(): void {
         $string = "foo";
         $literalString = \HelloBees\SharedKernel\Domain\ValueObject\LiteralString::createFromString($string);
         self::assertEquals($string, $literalString);
     }
 
-    /**
-     * @return void
-     */
     public function testGetValue(): void {
         $string = "foo";
         $literalString = LiteralString::createFromString($string);
         self::assertEquals($string, $literalString->getValue());
     }
 
-    /**
-     * @return void
-     */
     public function testIsEmpty(): void {
         $string = "";
         $literalString = LiteralString::createFromString($string);
         self::assertTrue($literalString->isEmpty());
     }
 
-    /**
-     * @return void
-     */
     public function testGetLength(): void {
         $literalString = LiteralString::createFromString("foo");
         self::assertEquals(3, $literalString->getLength());
     }
 
     /**
-     * @return void
      * @throws InvalidValueObjectException
      */
     public function testEqualsIsEqual(): void {
@@ -73,7 +51,6 @@ class LiteralStringTest extends TestCase
     }
 
     /**
-     * @return void
      * @throws InvalidValueObjectException
      */
     public function testEqualsIsNotEqual(): void {
@@ -83,7 +60,6 @@ class LiteralStringTest extends TestCase
     }
 
     /**
-     * @return void
      * @throws InvalidValueObjectException
      */
     public function testEqualsWithIncorrectParamType(): void
@@ -95,7 +71,6 @@ class LiteralStringTest extends TestCase
     }
 
     /**
-     * @return void
      * @throws InvalidValueObjectException
      */
     public function testEqualsWithIncorrectValueObjectParamType(): void
@@ -106,9 +81,6 @@ class LiteralStringTest extends TestCase
         $literalString1->equals($literalString2);
     }
 
-    /**
-     * @return void
-     */
     public function testMagicToString(): void
     {
         $literalString1 = \HelloBees\SharedKernel\Domain\ValueObject\LiteralString::createFromString("foo");
